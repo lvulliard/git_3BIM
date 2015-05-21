@@ -34,7 +34,7 @@
 
 Host::Host(void)
 {
-  parasites = NULL
+  parasites = NULL;
   genes = NULL;
 }
 
