@@ -42,10 +42,18 @@ Main_Window::Main_Window(void) {
 	resize(DefVal::WINDOW_WIDTH, DefVal::WINDOW_HEIGHT);
 	// Window position
 	set_position(Gtk::WIN_POS_CENTER);
-	// Add start Button
-	add(start_button);
+
+	
+	Main_table.resize(5,3); // Resize table
+	add(Main_table); // Add table container
+
+	// Attach start Button
+	Main_table.attach(start_button, 4, 5, 0, 1, Gtk::FILL, Gtk::FILL,DefVal::BUTTONS_MARGIN_SIZE,DefVal::BUTTONS_MARGIN_SIZE);
+	//add(start_button);
 	start_button.set_label(DefVal::START_BUTTON_LABEL);
-	start_button.show();
+
+	// Display all widgets
+	show_all();
 }
 
 
@@ -55,6 +63,6 @@ Main_Window::Main_Window(void) {
 
 
 
-//============================================================================
-//  							Methods definition
-//============================================================================
+// ===========================================================================
+//								Methods definition
+// ===========================================================================
