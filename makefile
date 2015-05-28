@@ -1,7 +1,7 @@
 all: coevolution.out
 
 coevolution.out: main.cpp Environment.o Host.o 
-	g++ -o coevolution.out -Wall Environment.o Host.o main.cpp
+	g++ -o coevolution.out -Wall Environment.o Host.o main.cpp `pkg-config gtkmm-3.0 --cflags --libs`
 
 
 Environment.o: Environment.cpp Environment.h
