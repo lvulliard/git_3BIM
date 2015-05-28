@@ -22,13 +22,19 @@ namespace DefVal {
 	const unsigned int WINDOW_WIDTH = 800;
 	const unsigned int WINDOW_HEIGHT = 600;
 	const unsigned int WINDOW_BORDER_WIDTH = 10;
-	const unsigned int BUTTONS_MARGIN_SIZE = 10;
+	const unsigned int WIDGETS_MARGIN_SIZE = 10;
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";
 	const string APP_NAME = "Coevolution Model";
 	const string ICON = "icon.png";
 	
 	const string START_BUTTON_LABEL = "Start";
+	const string GENERATION_NUMBER_LABEL_TEXT = "Number of generations:";
+	const string HOST_LABEL_TEXT = "Host:";
+	const string STATISTICS_LABEL_TEXT = "Statistics: :'(";
+	const unsigned int HOST_COMBOBOX_WRAP_WIDTH = 1;
+	const string HOST_COMBOBOX_TITLE = "Choose Host";
+	const string DISPLAY_IMAGE_FILE_NAME = "icon.png";
 }
 
 #endif // __DefVal_H__

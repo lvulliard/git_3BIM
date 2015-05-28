@@ -15,6 +15,12 @@
 #include <gtkmm/main.h>
 #include <gtkmm/window.h>
 #include <gtkmm/table.h>
+#include <gtkmm/label.h>
+#include <gtkmm/spinbutton.h>
+#include <gtkmm/comboboxtext.h>
+#include <gtkmm/image.h>
+
+
 
 // ===========================================================================
 //							 Include Project Files
@@ -58,7 +64,7 @@ class Main_Window : public Gtk::Window {
 	// =======================================================================
 	//								Public Methods
 	// =======================================================================
-
+        void Fill_host_combobox(void);
 
 	// =======================================================================
 	//							 Public Attributes
@@ -76,7 +82,13 @@ class Main_Window : public Gtk::Window {
 	//							 Protected Attributes
 	// =======================================================================
 		Gtk::Table Main_table;
-		Gtk::Button start_button;
+        Gtk::Button start_button;
+        Gtk::Label generation_number_label;
+        Gtk::Label host_label;
+        Gtk::Label statistics_label;
+        Gtk::SpinButton generation_number_spinbutton;
+        Gtk::ComboBoxText host_combobox;
+        Gtk::Image display_image;
 };
 
 #endif
