@@ -42,11 +42,10 @@ Main_Window::Main_Window(void) {
 	resize(DefVal::WINDOW_WIDTH, DefVal::WINDOW_HEIGHT);
 	// Window position
 	set_position(Gtk::WIN_POS_CENTER);
-	set_border_width(DefVal::WINDOW_BORDER_WIDTH);
-	// Add button
-	Gtk::Button bouton(DefVal::BUTTON1_LABEL); 
-	add(bouton); 
-	bouton.show(); 
+	// Add start Button
+	add(start_button);
+	start_button.set_label(DefVal::START_BUTTON_LABEL);
+	start_button.show();
 }
 
 

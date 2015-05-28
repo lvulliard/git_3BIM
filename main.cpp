@@ -44,7 +44,6 @@ int main(int argc, char* argv[]) {
     Gtk::Main app(argc, argv);
     // Create the Window object
     Main_Window fenetre;
-
     // Display the Window object and start the main loop
     Gtk::Main::run(fenetre);
 

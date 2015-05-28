@@ -24,9 +24,10 @@ namespace DefVal {
 	const unsigned int WINDOW_BORDER_WIDTH = 10;
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";
-	const string APP_NAME = "Coevolution model";
+	const string APP_NAME = "Coevolution Model";
 	const string ICON = "icon.png";
 	
+	const string START_BUTTON_LABEL = "Start";
 } 
 
 #endif // __DefVal_H__
