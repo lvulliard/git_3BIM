@@ -1,6 +1,6 @@
 all: coevolution.out
 
-coevolution.out: main.cpp Environment.o Host.o 
+coevolution.out: main.cpp DefVal.h Environment.o Host.o 
 	g++ -o coevolution.out -Wall Environment.o Host.o main.cpp `pkg-config gtkmm-3.0 --cflags --libs`
 
 
@@ -9,7 +9,6 @@ Environment.o: Environment.cpp Environment.h
 
 Host.o: Host.cpp Host.h
 	g++ -o Host.o -c -Wall Host.cpp
-
 
 clean:
 	rm *.o
