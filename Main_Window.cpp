@@ -69,6 +69,7 @@ Main_Window::Main_Window(void) {
 	// Attach start Button
 	Main_table.attach(start_button,4,5,0,1, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	start_button.set_label(DefVal::START_BUTTON_LABEL);
+	start_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::Start_button_clicked));
 
 	// Attach display_image
 	Main_table.attach(display_image,0,5,1,2, Gtk::FILL | Gtk::EXPAND, Gtk::FILL | Gtk::EXPAND,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
@@ -78,7 +79,7 @@ Main_Window::Main_Window(void) {
 	Main_table.attach(statistics_label,0,1,2,3, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	statistics_label.set_label(DefVal::STATISTICS_LABEL_TEXT);
 
- 
+
 
 	// Display all widgets
 	show_all();
@@ -113,4 +114,9 @@ void Main_Window::Fill_host_combobox(void){
 	host_combobox.append("Host 15");
 	host_combobox.append("Host 16");
 	host_combobox.append("Average Host");
+}
+
+
+void Main_Window::Start_button_clicked(void){
+	printf("Uuuuuuuh.\n");
 }
