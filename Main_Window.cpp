@@ -65,10 +65,16 @@ Main_Window::Main_Window(void) {
 
 	// Attach generation_number_spinbutton
 	Main_table.attach(generation_number_spinbutton,3,4,0,1, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	generation_number_spinbutton.set_numeric(TRUE);
+	generation_number_spinbutton.set_wrap(TRUE);
+	generation_number_spinbutton.set_range(0, DefVal::GENERATION_NUMBER_MAX);
+	generation_number_spinbutton.set_increments(1,10);
+
 	
 	// Attach start Button
 	Main_table.attach(start_button,4,5,0,1, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	start_button.set_label(DefVal::START_BUTTON_LABEL);
+	start_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::Start_button_clicked));
 
 	// Attach display_image
 	Main_table.attach(display_image,0,5,1,2, Gtk::FILL | Gtk::EXPAND, Gtk::FILL | Gtk::EXPAND,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
@@ -106,10 +112,14 @@ void Main_Window::Fill_host_combobox(void){
 	host_combobox.set_active_text("host_2");
 }
 
-
 void Main_Window::change_central_pic(void)
 {
 	string text2 = host_combobox.get_active_text(); 
 	string f_name = text2 + DefVal::PIC_FORMAT;
 	display_image.set(f_name);
+}
+
+void Main_Window::Start_button_clicked(void)
+{
+	printf("Uuuuuuuh.\n");
 }

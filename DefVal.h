@@ -23,6 +23,7 @@ namespace DefVal {
 	const unsigned int WINDOW_HEIGHT = 600;
 	const unsigned int WINDOW_BORDER_WIDTH = 10;
 	const unsigned int WIDGETS_MARGIN_SIZE = 10;
+	const unsigned int GENERATION_NUMBER_MAX = 100;
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";
 	const string APP_NAME = "Coevolution Model";

@@ -21,7 +21,12 @@
 #include <gtkmm/image.h>
 #include <string>
 
-
+#include <gtkmm/actiongroup.h>
+#include <gtkmm/box.h>
+#include <gtkmm/menu.h>
+#include <gtkmm/menubar.h>
+#include <gtkmm/menuitem.h>
+#include <gtkmm/adjustment.h>
 
 // ===========================================================================
 //							 Include Project Files
@@ -66,6 +71,7 @@ class Main_Window : public Gtk::Window {
 	//								Public Methods
 	// =======================================================================
         void Fill_host_combobox(void);
+        void Start_button_clicked(void);
 
 		// Change the central picture displaying an host profile 
 		void change_central_pic(void);
@@ -93,6 +99,15 @@ class Main_Window : public Gtk::Window {
         Gtk::SpinButton generation_number_spinbutton;
         Gtk::ComboBoxText host_combobox;
         Gtk::Image display_image;
+
+        //Adjustement for spin button
+		//Gtk::Adjustment adjust_spin_button;
+		// *gtk_adjustment_new( gfloat 0, gfloat 0, gfloat 100, gfloat 1, gfloat 1, gfloat page_size );
+        
+
+    
+
+
 };
 
 
