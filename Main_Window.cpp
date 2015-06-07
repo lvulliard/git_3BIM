@@ -77,6 +77,8 @@ Main_Window::Main_Window(void) {
 	Main_table.attach(statistics_label,0,1,2,3, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	statistics_label.set_label(DefVal::STATISTICS_LABEL_TEXT);
 
+ 
+
 	// Display all widgets
 	show_all();
 }

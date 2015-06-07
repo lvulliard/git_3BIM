@@ -19,6 +19,11 @@
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/image.h>
+#include <gtkmm/actiongroup.h>
+#include <gtkmm/box.h>
+#include <gtkmm/menu.h>
+#include <gtkmm/menubar.h>
+#include <gtkmm/menuitem.h>
 
 
 
@@ -89,6 +94,12 @@ class Main_Window : public Gtk::Window {
         Gtk::SpinButton generation_number_spinbutton;
         Gtk::ComboBoxText host_combobox;
         Gtk::Image display_image;
+
+        
+
+    
+
+
 };
 
 #endif
