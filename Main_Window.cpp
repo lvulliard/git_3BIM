@@ -64,6 +64,7 @@ Main_Window::Main_Window(void) {
 
 	// Attach generation_number_spinbutton
 	Main_table.attach(generation_number_spinbutton,3,4,0,1, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	generation_number_spinbutton.set_numeric(TRUE);
 	
 	// Attach start Button
 	Main_table.attach(start_button,4,5,0,1, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);

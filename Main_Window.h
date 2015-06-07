@@ -24,7 +24,7 @@
 #include <gtkmm/menu.h>
 #include <gtkmm/menubar.h>
 #include <gtkmm/menuitem.h>
-
+#include <gtkmm/adjustment.h>
 
 
 // ===========================================================================
@@ -95,6 +95,9 @@ class Main_Window : public Gtk::Window {
         Gtk::ComboBoxText host_combobox;
         Gtk::Image display_image;
 
+        //Adjustement for spin button
+		//Gtk::Adjustment adjust_spin_button;
+		// *gtk_adjustment_new( gfloat 0, gfloat 0, gfloat 100, gfloat 1, gfloat 1, gfloat page_size );
         
 
     
