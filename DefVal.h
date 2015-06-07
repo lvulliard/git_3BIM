@@ -34,7 +34,8 @@ namespace DefVal {
 	const string STATISTICS_LABEL_TEXT = "Statistics: :'(";
 	const unsigned int HOST_COMBOBOX_WRAP_WIDTH = 1;
 	const string HOST_COMBOBOX_TITLE = "Choose Host";
-	const string DISPLAY_IMAGE_FILE_NAME = "icon.png";
+	const string DISPLAY_IMAGE_FILE_NAME = "host_2.jpg";
+	const string PIC_FORMAT = ".jpg";
 }
 
 #endif // __DefVal_H__

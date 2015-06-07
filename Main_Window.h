@@ -19,6 +19,7 @@
 #include <gtkmm/spinbutton.h>
 #include <gtkmm/comboboxtext.h>
 #include <gtkmm/image.h>
+#include <string>
 
 
 
@@ -66,6 +67,9 @@ class Main_Window : public Gtk::Window {
 	// =======================================================================
         void Fill_host_combobox(void);
 
+		// Change the central picture displaying an host profile 
+		void change_central_pic(void);
+
 	// =======================================================================
 	//							 Public Attributes
 	// =======================================================================
@@ -90,5 +94,6 @@ class Main_Window : public Gtk::Window {
         Gtk::ComboBoxText host_combobox;
         Gtk::Image display_image;
 };
+
 
 #endif
