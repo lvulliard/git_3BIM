@@ -70,6 +70,7 @@ class Main_Window : public Gtk::Window {
 	//								Public Methods
 	// =======================================================================
         void Fill_host_combobox(void);
+        void Start_button_clicked(void);
 
 	// =======================================================================
 	//							 Public Attributes
