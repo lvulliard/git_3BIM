@@ -51,7 +51,7 @@ class Host
     //                            Accessors: getters
     // =======================================================================
 	
-    float getFitness(void) const;
+    float getFitness(unsigned int**) const;
 
 
 
