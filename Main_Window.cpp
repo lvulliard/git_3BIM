@@ -121,7 +121,9 @@ void Main_Window::change_central_pic(void)
 
 void Main_Window::Start_button_clicked(void)
 {
-	printf("Uuuuuuuh.\n");
+	int g;
+	g = generation_number_spinbutton.get_value();
+	printf("Uuuuuuuh: %d\n",g);
 }
 
 /*void Main_Window::save_picture(unsigned int * pix, char * picture_name)

@@ -92,3 +92,11 @@ unsigned int** Environment::profileFunction(void)
 
   return profile;
 }
+
+
+
+
+
+
+
+>>>>>>> 0e8e625a6cf89e5a1e6665442d98cddf35781885
