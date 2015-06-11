@@ -68,6 +68,8 @@ class Host
     void mutation(void);
     void newParasiteGeneration(void);
     float* drawProfile(void);
+        // Save picture with a matrix of pixel value
+    void save_picture(unsigned char * pix, char* picture_name);
 
 
     // =======================================================================
