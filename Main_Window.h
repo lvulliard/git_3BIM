@@ -73,6 +73,8 @@ class Main_Window : public Gtk::Window {
         void Fill_host_combobox(void);
         void Start_button_clicked(void);
 
+<<<<<<< HEAD
+        
 		// Change the central picture displaying an host profile 
 		void change_central_pic(void);
 
@@ -100,10 +102,10 @@ class Main_Window : public Gtk::Window {
         Gtk::ComboBoxText host_combobox;
         Gtk::Image display_image;
 
+        
         //Adjustement for spin button
 		//Gtk::Adjustment adjust_spin_button;
 		// *gtk_adjustment_new( gfloat 0, gfloat 0, gfloat 100, gfloat 1, gfloat 1, gfloat page_size );
-        
 
     
 
