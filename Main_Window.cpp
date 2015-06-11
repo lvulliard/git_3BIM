@@ -18,9 +18,10 @@
 
 #include "DefVal.h"
 #include "Main_Window.h"
+#include <string>
 
 
-
+	
 //############################################################################
 //																			 #
 //							  Class Main_Window		  						 #
@@ -83,7 +84,8 @@ Main_Window::Main_Window(void) {
 	Main_table.attach(statistics_label,0,1,2,3, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	statistics_label.set_label(DefVal::STATISTICS_LABEL_TEXT);
 
-
+	// Link the option chosen in the combobox to the display of a profile
+	host_combobox.signal_changed().connect(sigc::mem_fun(*this, &Main_Window::change_central_pic));
 
 	// Display all widgets
 	show_all();
@@ -101,26 +103,23 @@ Main_Window::Main_Window(void) {
 // ===========================================================================
 
 void Main_Window::Fill_host_combobox(void){
-	host_combobox.append("Host 1");
-	host_combobox.append("Host 2");
-	host_combobox.append("Host 3");
-	host_combobox.append("Host 4");
-	host_combobox.append("Host 5");
-	host_combobox.append("Host 6");
-	host_combobox.append("Host 7");
-	host_combobox.append("Host 8");
-	host_combobox.append("Host 9");
-	host_combobox.append("Loan");
-	host_combobox.append("Host 11");
-	host_combobox.append("Host 12");
-	host_combobox.append("Host 13");
-	host_combobox.append("Host 14");
-	host_combobox.append("Host 15");
-	host_combobox.append("Host 16");
-	host_combobox.append("Average Host");
+	// Add entries to the combobox
+	host_combobox.append("host_1");
+	host_combobox.append("host_2");
+	host_combobox.append("host_3");
+	host_combobox.append("host_4");
+	host_combobox.append("host_5");
+	host_combobox.set_active_text("host_2");
 }
 
+void Main_Window::change_central_pic(void)
+{
+	string text2 = host_combobox.get_active_text(); 
+	string f_name = text2 + DefVal::PIC_FORMAT;
+	display_image.set(f_name);
+}
 
-void Main_Window::Start_button_clicked(void){
+void Main_Window::Start_button_clicked(void)
+{
 	printf("Uuuuuuuh.\n");
 }
