@@ -126,10 +126,4 @@ void Main_Window::Start_button_clicked(void)
 	printf("Uuuuuuuh: %d\n",g);
 }
 
-/*void Main_Window::save_picture(unsigned int * pix, char * picture_name)
-{
-	FILE *picture=fopen(picture_name, "wb");
-	unsigned int H=DefVal::WINDOW_HEIGHT;
-	unsigned int W=DefVal::WINDOW_WIDTH;
-	fprintf(picture, "P6\n %d %d\n %d",W,H,DefVal::MAX_VAL_PICTURE);	
-}*/
+

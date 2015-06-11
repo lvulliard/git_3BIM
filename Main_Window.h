@@ -74,8 +74,7 @@ class Main_Window : public Gtk::Window {
         void Start_button_clicked(void);
 		// Change the central picture displaying an host profile 
 		void change_central_pic(void);
-		// Save picture with a matrix of pixel value
-		void save_picture(unsigned int * pix, char* picture_name);
+
 	// =======================================================================
 	//							 Public Attributes
 	// =======================================================================
