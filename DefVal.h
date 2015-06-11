@@ -37,6 +37,8 @@ namespace DefVal {
 	const string HOST_COMBOBOX_TITLE = "Choose Host";
 	const string DISPLAY_IMAGE_FILE_NAME = "host_2.jpg";
 	const string PIC_FORMAT = ".jpg";
+
+	const unsigned int MAX_VAL_PICTURE= 255;
 }
 
 #endif // __DefVal_H__
