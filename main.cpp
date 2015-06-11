@@ -48,7 +48,11 @@ int main(int argc, char* argv[]) {
     Main_Window fenetre;
     // Display the Window object and start the main loop
     Gtk::Main::run(fenetre);
-
+    Host Indiv=Host();
+    //Test to save hist profil
+    char* name="WORKs.ppm";
+    unsigned char tab[]={0,255,0,255,0,0,0,0,255};
+    Indiv.save_picture(tab,name);
     return 0;
 }
 
