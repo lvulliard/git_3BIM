@@ -63,7 +63,7 @@ class Environment
     // =======================================================================
     //                              Public Methods
     // =======================================================================
-
+    unsigned int** profileFunction(void);
     void newGeneration(void);
     void runGraphics(void);
     void saveLog(void);
@@ -72,7 +72,7 @@ class Environment
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
-
+    unsigned int** profile;
 
 
   protected :
@@ -85,8 +85,7 @@ class Environment
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-
-    double profile;
+    
     Host* hosts;
 
 	

@@ -40,6 +40,8 @@
 
 
 int main(int argc, char* argv[]) {
+    Environment env;    
+
     // Initiate Gtk
     Gtk::Main app(argc, argv);
     // Create the Window object
