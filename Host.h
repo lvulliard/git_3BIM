@@ -51,7 +51,8 @@ class Host
     //                            Accessors: getters
     // =======================================================================
 	
-    float getFitness(unsigned int**) const;
+    int getFitness(int** m_env, int** m_host, int**m_par) const;
+
 
 
 
@@ -65,9 +66,11 @@ class Host
     //                              Public Methods
     // =======================================================================
 
+    Triangle* randomGenes(void);
+    int** Triangleprofile(void);
+    int** matrixGenerator(void);
     void mutation(void);
     void newParasiteGeneration(void);
-    float* drawProfile(void);
         // Save picture with a matrix of pixel value
     void save_picture(unsigned char * pix, char* picture_name);
 
@@ -89,8 +92,9 @@ class Host
     //                             Protected Attributes
     // =======================================================================
 
-    Triangle* parasites;
-    Triangle* genes;
+    Triangle parasite;
+    int** matrix;
+    int n_genes;
 
 
 	
