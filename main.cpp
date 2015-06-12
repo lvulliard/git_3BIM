@@ -42,7 +42,8 @@
 
 int main(int argc, char* argv[]) {
     Environment env;    
-
+    
+    //Test to save hist profil
     Host Indiv= Host();
     //int** mat=Indiv.matrixGenerator();
     //unsigned char * pix=Indiv.convert_pixels(mat);
@@ -58,12 +59,12 @@ int main(int argc, char* argv[]) {
     Gtk::Main::run(fenetre);
     
     //Giorgia and Noelie test
-    /*    Host h;
-    //int i;
+    Host h;
+    int i;
     int x;
     int y;
     
-    
+    /*
     Triangle* t = h.randomGenes();
     for (i=0; i<DefVal::N_TRIANGLES_HOST; i++)
       printf("%d %d %d \n",t[i].x, t[i].w, t[i].h);
@@ -73,15 +74,15 @@ int main(int argc, char* argv[]) {
     for (i=0; i<DefVal::WINDOW_WIDTH ;i++)
         printf("%d %d\n",p[0][i],p[1][i]);
     
-
+    */
     int** m = h.matrixGenerator();
-    for (x=0; x<DefVal::WINDOW_WIDTH; x++) {
-        for (y=0; y<DefVal::WINDOW_HEIGHT; y++)
+    for (x=0; x<DefVal::PIC_WIDTH; x++) {
+        for (y=0; y<DefVal::PIC_HEIGHT; y++)
             printf ("%d ", m[x][y]);
         printf("\n");
-    }*/
+    }
 
-    //Test to save hist profil
+    
 
     return 0;
 }
