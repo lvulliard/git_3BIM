@@ -27,7 +27,8 @@ namespace DefVal {
 	const unsigned int PIC_WIDTH = 800;
 	const unsigned int PIC_HEIGHT = 500; // must be >= 500
 	const unsigned int HOST_COMBOBOX_WRAP_WIDTH = 1;
-	const int N_TRIANGLES_HOST = 30;
+	const unsigned int NB_HOSTS = 5;
+	const unsigned int N_TRIANGLES_HOST = 30;
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";
 	const string APP_NAME = "Coevolution Model";
@@ -39,7 +40,7 @@ namespace DefVal {
 	const string STATISTICS_LABEL_TEXT = "Statistics: :'(";
 	const string HOST_COMBOBOX_TITLE = "Choose Host";
 	const string DISPLAY_IMAGE_FILE_NAME = "host_2.jpg";
-	const string PIC_FORMAT = ".jpg";
+	const string PIC_FORMAT = ".ppm";
 
 	const unsigned int MAX_VAL_PICTURE= 255;
 }

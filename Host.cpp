@@ -130,7 +130,7 @@ int* Host::Triangleprofile(void)
 
 
  // Generates matrix of 0s and 1s depending on weather we're below or above the profile
-int** Host::matrixGenerator(void)
+unsigned int** Host::matrixGenerator(void)
 {
   int win_width = DefVal::PIC_WIDTH;
   int win_height = DefVal::PIC_HEIGHT;
@@ -138,10 +138,10 @@ int** Host::matrixGenerator(void)
   int* prof = Triangleprofile(); 
 
 
-  int** mat = new int*[win_width];            // Creation of lines
+  unsigned int** mat = new unsigned int*[win_width];            // Creation of lines
   for (int x=0; x<win_width; x++)
   { 
-    mat[x] = new int[win_height];         // Creation of columns
+    mat[x] = new unsigned int[win_height];         // Creation of columns
   }
 
   for (int x=0; x<win_width; x++)        // For each column of my matrix...
@@ -209,7 +209,7 @@ void Host::save_picture(unsigned char* mat_pix, char * picture_name) //pix is an
   //delete [] mat_pix;
 }
 
-unsigned char * Host::convert_pixel (int** mat_host, int** mat_envt, int** mat_para)
+unsigned char * Host::convert_pixel (unsigned int** mat_host, unsigned int** mat_envt, unsigned int** mat_para)
 {
   unsigned int w=DefVal::PIC_WIDTH;
   unsigned int h=DefVal::PIC_HEIGHT;
@@ -252,3 +252,15 @@ unsigned char * Host::convert_pixel (int** mat_host, int** mat_envt, int** mat_p
   return mat_pix;
 }
 
+void Host::format_and_save(unsigned int** mat_envt, int id)
+{
+	// host matrix
+    unsigned int** mat_host= matrixGenerator();
+    // parasite matrix
+    unsigned int ** mat_par= matrixGenerator(); // Not implemented yet
+    unsigned char * pix= convert_pixel(mat_host, mat_envt, mat_par);
+    //printf("%d%s", id, DefVal::PIC_FORMAT.c_str());
+    char name[100];
+    sprintf(name,"host_%d%s", id, DefVal::PIC_FORMAT.c_str());
+    save_picture(pix, name);
+}

@@ -20,6 +20,7 @@
 
 #include "Environment.h"
 #include "DefVal.h"
+#include "Host.h"
 
 //############################################################################
 //                                                                           #
@@ -36,7 +37,12 @@ Environment::Environment(void)
 {
   profile = profileFunction();
 
-  hosts = NULL;
+  // Create a table of NB_HOSTS hosts
+  hosts = new Host[DefVal::NB_HOSTS];
+  for (int i = 0; i < DefVal::NB_HOSTS ; i++)
+  {
+    hosts[i] = Host();
+  }  
 }
 
 // ===========================================================================
@@ -64,6 +70,11 @@ void Environment::newGeneration(void)
 
 void Environment::runGraphics(void)
 {
+  // Print profiles in pictures
+  for (int i = 0; i < DefVal::NB_HOSTS; ++i)
+  {
+    hosts[i].format_and_save(profileFunction(),i);
+  }
 }
     
 

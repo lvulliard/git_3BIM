@@ -68,13 +68,14 @@ class Host
 
     Triangle* randomGenes(void);
     int* Triangleprofile(void);
-    int** matrixGenerator(void);
+    unsigned int** matrixGenerator(void);
     void mutation(void);
     void newParasiteGeneration(void);
     // Save picture with a matrix of pixel value
     void save_picture(unsigned char * pix, char* picture_name);
-    unsigned char* convert_pixel(int** mat_host, int** mat_envt, int** mat_para);
-
+    unsigned char* convert_pixel(unsigned int** mat_host, unsigned int** mat_envt, unsigned int** mat_para);
+    // Compute the matrix of the 3 profiles and print it
+    void format_and_save(unsigned int**, int);
 
 
     // =======================================================================

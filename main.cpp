@@ -42,15 +42,16 @@
 
 int main(int argc, char* argv[]) {
     Environment env;    
-    
+    env.runGraphics();
+
     //Test to save hist profil
-    Host Indiv= Host();
-    int** mat_host=Indiv.matrixGenerator();
-    int ** mat_envt=Indiv.matrixGenerator();
-    int ** mat_par=Indiv.matrixGenerator();
-    unsigned char * pix=Indiv.convert_pixel(mat_host, mat_envt, mat_par);
-    char* name="WORKs.ppm";
-    Indiv.save_picture(pix, name);
+    // Host Indiv= Host();
+    // int** mat_host=Indiv.matrixGenerator();
+    // int ** mat_envt=Indiv.matrixGenerator();
+    // int ** mat_par=Indiv.matrixGenerator();
+    // unsigned char * pix=Indiv.convert_pixel(mat_host, mat_envt, mat_par);
+    // char* name="WORKs.ppm";
+    // Indiv.save_picture(pix, name);
 
     // Initiate Gtk
     Gtk::Main app(argc, argv);
@@ -60,10 +61,10 @@ int main(int argc, char* argv[]) {
     Gtk::Main::run(fenetre);
     
     //Giorgia and Noelie test
-    Host h;
-    int i;
-    int x;
-    int y;
+    // Host h;
+    // int i;
+    // int x;
+    // int y;
     
     /*
     Triangle* t = h.randomGenes();
