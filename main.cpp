@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
     Gtk::Main::run(fenetre);
     
     //Giorgia and Noelie test
-        Host h;
+    Host h;
     int i;
     int x;
     int y;
@@ -68,8 +68,8 @@ int main(int argc, char* argv[]) {
     */
 
     int** m = h.matrixGenerator();
-    for (x=0; x<DefVal::WINDOW_WIDTH; x++) {
-        for (y=0; y<DefVal::WINDOW_HEIGHT; y++)
+    for (x=0; x<DefVal::PIC_WIDTH; x++) {
+        for (y=0; y<DefVal::PIC_HEIGHT; y++)
             printf ("%d ", m[x][y]);
         printf("\n");
     }
