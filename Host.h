@@ -71,13 +71,14 @@ class Host
     int** matrixGenerator(void);
     void mutation(void);
     void newParasiteGeneration(void);
-        // Save picture with a matrix of pixel value
-    void save_picture(unsigned char * pix, char* picture_name);
+    void save_picture(unsigned char* mat_pix, char* picture_name);  // Save picture with a matrix of pixel value
+    unsigned char* convert_pixels(unsigned int ** envt);  //Convert host's matrix in pixel array
 
 
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
+
 
 
 
