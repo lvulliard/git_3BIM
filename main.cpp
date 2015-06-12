@@ -45,11 +45,12 @@ int main(int argc, char* argv[]) {
     
     //Test to save hist profil
     Host Indiv= Host();
-    //int** mat=Indiv.matrixGenerator();
-    //unsigned char * pix=Indiv.convert_pixels(mat);
+    int** mat_host=Indiv.matrixGenerator();
+    int ** mat_envt=Indiv.matrixGenerator();
+    int ** mat_par=Indiv.matrixGenerator();
+    unsigned char * pix=Indiv.convert_pixel(mat_host, mat_envt, mat_par);
     char* name="WORKs.ppm";
-    unsigned char pixe[]={0,255,0,255,0,0,0,0,255};
-    Indiv.save_picture(pixe, name);
+    Indiv.save_picture(pix, name);
 
     // Initiate Gtk
     Gtk::Main app(argc, argv);
@@ -75,12 +76,12 @@ int main(int argc, char* argv[]) {
         printf("%d %d\n",p[0][i],p[1][i]);
     
     */
-    int** m = h.matrixGenerator();
+    /*int** m = h.matrixGenerator();
     for (x=0; x<DefVal::PIC_WIDTH; x++) {
         for (y=0; y<DefVal::PIC_HEIGHT; y++)
             printf ("%d ", m[x][y]);
         printf("\n");
-    }
+    }*/
 
     
 

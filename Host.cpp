@@ -209,3 +209,46 @@ void Host::save_picture(unsigned char* mat_pix, char * picture_name) //pix is an
   //delete [] mat_pix;
 }
 
+unsigned char * Host::convert_pixel (int** mat_host, int** mat_envt, int** mat_para)
+{
+  unsigned int w=DefVal::PIC_WIDTH;
+  unsigned int h=DefVal::PIC_HEIGHT;
+  unsigned char * mat_pix= new unsigned char[3*w*h];
+  unsigned int x,y;
+  //Blue for envt, green for host, red for parasite
+  for(x=0; x<w; x++)
+  {
+    for(y=0; y<h; y++)
+    {
+      //Host
+      if(mat_host[x][y]==1)
+      {
+        mat_pix[3*(x+y*w)+1]=255;
+      }
+      else
+      {
+        mat_pix[3*(x+y*w)+1]=0;
+      }
+      //Environment
+      if(mat_envt[x][y]==1)
+      {
+        mat_pix[3*(x+y*w)+2]=255;
+      }
+      else
+      {
+        mat_pix[3*(x+y*w)]=0;
+      }
+      //Parasite
+      if(mat_para[x][y]==1)
+      {
+        mat_pix[3*(x+y*w)]=255;
+      }
+      else
+      {
+        mat_pix[3*(x+y*w)]=0;
+      }
+    }
+  }
+  return mat_pix;
+}
+
