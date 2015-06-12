@@ -223,29 +223,29 @@ unsigned char * Host::convert_pixel (unsigned int** mat_host, unsigned int** mat
       //Host
       if(mat_host[x][y]==1)
       {
-        mat_pix[3*(x+y*w)+1]=255;
+        mat_pix[3*(x+(h*w-y*w))+1]=255;
       }
       else
       {
-        mat_pix[3*(x+y*w)+1]=0;
+        mat_pix[3*(x+(h*w-y*w))+1]=0;
       }
       //Environment
       if(mat_envt[x][y]==1)
       {
-        mat_pix[3*(x+y*w)+2]=255;
+        mat_pix[3*(x+(h*w-y*w))+2]=255;
       }
       else
       {
-        mat_pix[3*(x+y*w)]=0;
+        mat_pix[3*(x+(h*w-y*w))]=0;
       }
       //Parasite
       if(mat_para[x][y]==1)
       {
-        mat_pix[3*(x+y*w)]=255;
+        mat_pix[3*(x+(h*w-y*w))]=255;
       }
       else
       {
-        mat_pix[3*(x+y*w)]=0;
+        mat_pix[3*(x+(h*w-y*w))]=0;
       }
     }
   }
