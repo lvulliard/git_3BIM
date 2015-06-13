@@ -87,6 +87,7 @@ Main_Window::Main_Window(void) {
 	host_number_spinbutton.set_wrap(FALSE);
 	host_number_spinbutton.set_range(1, DefVal::HOST_NUMBER_MAX);
 	host_number_spinbutton.set_increments(1,10);
+	host_number_spinbutton.signal_value_changed().connect(sigc::mem_fun(*this, &Main_Window::host_number_spinbutton_changed));
 
 	// Attach parasite_number_label
 	Main_table.attach(parasite_number_label,2,3,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
@@ -98,6 +99,7 @@ Main_Window::Main_Window(void) {
 	parasite_number_spinbutton.set_wrap(FALSE);
 	parasite_number_spinbutton.set_range(0, DefVal::PARASITE_NUMBER_MAX);
 	parasite_number_spinbutton.set_increments(1,10);
+	parasite_number_spinbutton.signal_value_changed().connect(sigc::mem_fun(*this, &Main_Window::parasite_number_spinbutton_changed));
 
 	// Attach display_image
 	Main_table.attach(display_image,0,5,2,3, Gtk::FILL | Gtk::EXPAND, Gtk::FILL | Gtk::EXPAND,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
@@ -183,9 +185,23 @@ void Main_Window::change_central_pic(void)
 
 void Main_Window::Start_button_clicked(void)
 {
-	int g;
-	g = generation_number_spinbutton.get_value();
-	printf("Uuuuuuuh: %d\n",g);
+	int n;
+	n = generation_number_spinbutton.get_value();
+	printf("Uuuuuuuh: %d generations\n",n);
+}
+
+void Main_Window::host_number_spinbutton_changed(void)
+{
+	int n;
+	n = host_number_spinbutton.get_value();
+	printf("Uuuuuuuh: %d hosts\n",n);
+}
+
+void Main_Window::parasite_number_spinbutton_changed(void)
+{
+	int n;
+	n = parasite_number_spinbutton.get_value();
+	printf("Uuuuuuuh: %d parasites\n",n);
 }
 
 

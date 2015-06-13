@@ -72,6 +72,8 @@ class Main_Window : public Gtk::Window {
 	// =======================================================================
         void Fill_host_combobox(void);
         void Start_button_clicked(void);
+        void host_number_spinbutton_changed(void);
+        void parasite_number_spinbutton_changed(void);
 		// Change the central picture displaying an host profile 
 		void change_central_pic(void);
 
