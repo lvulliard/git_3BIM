@@ -12,7 +12,6 @@
 // ===========================================================================
 
 #include <math.h>
-#include <time.h>
 
 // ===========================================================================
 //                                 Project Files
@@ -24,7 +23,7 @@
 
 //############################################################################
 //                                                                           #
-//                        	  		Class Host                            	 #
+//                        	  		Class Host                              	 #
 //                                                                           #
 //############################################################################
 
@@ -35,6 +34,10 @@
 
 Host::Host(void)
 {
+
+  matrix = NULL;
+  //unsigned int** mat = matrixGenerator(); 
+  n_genes = DefVal::N_TRIANGLES_HOST;
 }
 
 
@@ -53,6 +56,7 @@ Host::~Host(void)
 // Takes 0: hosts or 1:parasites as parameter and returns a table of triangles with random but controlled attributes
 Triangle* Host::generateTriangles(int whatAmI)
 {
+
   srand (time(NULL));
   int win_width = DefVal::PIC_WIDTH;
   int wmin = 10;
@@ -73,6 +77,11 @@ Triangle* Host::generateTriangles(int whatAmI)
   triangles = new Triangle[n_triangles];
 
   for (int i=0; i<n_triangles; i++) 
+  int win_width = DefVal::WINDOW_WIDTH;
+  Triangle* genes;
+  genes = new Triangle[n_genes];
+ 
+  for (int i=0; i<n_genes; i++) 
   {
     int random_x = 10+(rand()%(int)(win_width-20+1)); // Position of triangle (random in range(10,win_width))
     int random_w = wmin+(rand()%(int)(wmax-wmin+1)); // Random number btw wmin and wmax
@@ -87,6 +96,17 @@ Triangle* Host::generateTriangles(int whatAmI)
     //printf("%d %f %f\n", triangles[i].x, triangles[i].w, triangles[i].h);
     
     }
+
+
+    if ((random_x != 0) && (random_w != 0) && (random_h != 0))
+    {
+      genes[i].x = random_x;
+      genes[i].w = random_w;
+      genes[i].h = random_h;
+    }
+    
+  }
+
   // Check boundaries
   for (int i=0; i<n_triangles; i++)
   {
@@ -131,6 +151,10 @@ int* Host::triangleProfile(Triangle* triangles, int size_triangles)
 
 // Generates matrix of 0s and 1s depending on weather we're below or above the profile
 int** Host::matrixGenerator(Triangle* triangles, int size_triangles)
+
+
+ // Generates matrix of 0s and 1s depending on weather we're below or above the profile
+unsigned int** Host::matrixGenerator(void)
 {
   int win_width = DefVal::PIC_WIDTH;
   int win_height = DefVal::PIC_HEIGHT;
@@ -141,6 +165,17 @@ int** Host::matrixGenerator(Triangle* triangles, int size_triangles)
     mat[x] = new int[win_height]; // Creation of columns
   
   for (int x=0; x<win_width; x++) // For each column of my matrix...
+
+  int* prof = Triangleprofile(); 
+
+
+  unsigned int** mat = new unsigned int*[win_width];            // Creation of lines
+  for (int x=0; x<win_width; x++)
+  { 
+    mat[x] = new unsigned int[win_height];         // Creation of columns
+  }
+
+  for (int x=0; x<win_width; x++)        // For each column of my matrix...
   {
     int temp_max = prof[x]; // max y to fill
     for (int y=0; y<win_height; y++)
@@ -189,13 +224,69 @@ void Host::mutation(void)
 
 
 
-void Host::save_picture(unsigned char * pix, char * picture_name) //pix is an array 1D
+void Host::save_picture(unsigned char* mat_pix, char * picture_name) //pix is an array 1D
 {	
-	//pix is an array 1D which contains values for each canal (RGB,RGB,RGB....)
+	//mat_pix is an array 1D which contains values for each canal (RGB,RGB,RGB....)
 	FILE *picture=fopen(picture_name, "wb");
 	unsigned int H=DefVal::PIC_HEIGHT;
 	unsigned int W=DefVal::PIC_WIDTH;
-	fprintf(picture, "P6\n %d %d\n %d",W,H,DefVal::MAX_VAL_PICTURE);	
-	fwrite(pix,sizeof(unsigned char),W*H*3, picture);
+	fprintf(picture, "P6\n %d %d\n %d\n",W,H,DefVal::MAX_VAL_PICTURE);	
+	fwrite(mat_pix,sizeof(unsigned char),3*W*H, picture);
+  //delete [] mat_pix;
 }
 
+unsigned char * Host::convert_pixel (unsigned int** mat_host, unsigned int** mat_envt, unsigned int** mat_para)
+{
+  unsigned int w=DefVal::PIC_WIDTH;
+  unsigned int h=DefVal::PIC_HEIGHT;
+  unsigned char * mat_pix= new unsigned char[3*w*h];
+  unsigned int x,y;
+  //Blue for envt, green for host, red for parasite
+  for(x=0; x<w; x++)
+  {
+    for(y=0; y<h; y++)
+    {
+      //Host
+      if(mat_host[x][y]==1)
+      {
+        // (h-1 - y)*w + x
+        mat_pix[3*(x+(h-y-1)*w)+1]=255;
+      }
+      else
+      {
+        mat_pix[3*(x+(h-y-1)*w)+1]=0;
+      }
+      //Environment
+      if(mat_envt[x][y]==1)
+      {
+        mat_pix[3*(x+(h-y-1)*w)+2]=255;
+      }
+      else
+      {
+        mat_pix[3*(x+(h-y-1)*w)+2]=0;
+      }
+      //Parasite
+      if(mat_para[x][y]==1)
+      {
+        mat_pix[3*(x+(h-y-1)*w)]=255;
+      }
+      else
+      {
+        mat_pix[3*(x+(h-y-1)*w)]=0;
+      }
+    }
+  }
+  return mat_pix;
+}
+
+void Host::format_and_save(unsigned int** mat_envt, int id)
+{
+	// host matrix
+    unsigned int** mat_host= matrixGenerator();
+    // parasite matrix
+    unsigned int ** mat_par= matrixGenerator(); // Not implemented yet
+    unsigned char * pix= convert_pixel(mat_host, mat_envt, mat_par);
+    char name[100];
+    sprintf(name,"host_%d%s", id, DefVal::PIC_FORMAT.c_str());
+    save_picture(pix, name);
+}
