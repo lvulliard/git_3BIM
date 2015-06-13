@@ -23,7 +23,9 @@ namespace DefVal {
 	const unsigned int WINDOW_HEIGHT = 500;
 	const unsigned int WINDOW_BORDER_WIDTH = 10;
 	const unsigned int WIDGETS_MARGIN_SIZE = 5;
-	const unsigned int GENERATION_NUMBER_MAX = 100;
+	const unsigned int GENERATION_NUMBER_MAX = 50;
+	const unsigned int HOST_NUMBER_MAX = 100;
+	const unsigned int PARASITE_NUMBER_MAX = 20;
 	const unsigned int PIC_WIDTH = 800;
 	const unsigned int PIC_HEIGHT = 500;
 	const unsigned int HOST_COMBOBOX_WRAP_WIDTH = 1;
@@ -43,7 +45,9 @@ namespace DefVal {
 	const string START_BUTTON_LABEL = "Start";
 	const string GENERATION_NUMBER_LABEL_TEXT = "Number of generations:";
 	const string HOST_LABEL_TEXT = "Host:";
-	const string STATISTICS_LABEL_TEXT = "Statistics:\t(Maintenant, yo dla place pour les stotishtiques, lô)";
+	const string HOST_NUMBER_LABEL_TEXT = "Number of hosts:";
+	const string PARASITE_NUMBER_LABEL_TEXT = "Number of parasites per host:";
+	const string STATISTICS_LABEL_TEXT = "Statistics:\tFitness:\tFecondity:";
 	const string HOST_COMBOBOX_TITLE = "Choose Host";
 	const string DISPLAY_IMAGE_FILE_NAME = "host_2.ppm";
 	const string PIC_FORMAT = ".ppm";

@@ -94,8 +94,12 @@ class Main_Window : public Gtk::Window {
         Gtk::Button start_button;
         Gtk::Label generation_number_label;
         Gtk::Label host_label;
+        Gtk::Label host_number_label;
+        Gtk::Label parasite_number_label;
         Gtk::Label statistics_label;
         Gtk::SpinButton generation_number_spinbutton;
+        Gtk::SpinButton host_number_spinbutton;
+        Gtk::SpinButton parasite_number_spinbutton;
         Gtk::ComboBoxText host_combobox;
         Gtk::Image display_image;
 

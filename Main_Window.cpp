@@ -45,7 +45,7 @@ Main_Window::Main_Window(void) {
 	set_position(Gtk::WIN_POS_CENTER);
 
 	
-	Main_table.resize(5,4); // Resize table
+	Main_table.resize(5,5); // Resize table
 	add(Main_table); // Add table container
 
 
@@ -61,7 +61,6 @@ Main_Window::Main_Window(void) {
 	// Link the option chosen in the combobox to the display of a profile
 	host_combobox.signal_changed().connect(sigc::mem_fun(*this, &Main_Window::change_central_pic));
 
-
 	// Attach generation_number_label
 	Main_table.attach(generation_number_label,2,3,0,1, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	generation_number_label.set_label(DefVal::GENERATION_NUMBER_LABEL_TEXT);
@@ -72,24 +71,44 @@ Main_Window::Main_Window(void) {
 	generation_number_spinbutton.set_wrap(TRUE);
 	generation_number_spinbutton.set_range(0, DefVal::GENERATION_NUMBER_MAX);
 	generation_number_spinbutton.set_increments(1,10);
-
 	
 	// Attach start Button
-	Main_table.attach(start_button,4,5,0,1, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	Main_table.attach(start_button,4,5,0,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	start_button.set_label(DefVal::START_BUTTON_LABEL);
 	start_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::Start_button_clicked));
 
+	// Attach host_number_label
+	Main_table.attach(host_number_label,0,1,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	host_number_label.set_label(DefVal::HOST_NUMBER_LABEL_TEXT);
+
+	// Attach host_number_spinbutton
+	Main_table.attach(host_number_spinbutton,1,2,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	host_number_spinbutton.set_numeric(TRUE);
+	host_number_spinbutton.set_wrap(FALSE);
+	host_number_spinbutton.set_range(1, DefVal::HOST_NUMBER_MAX);
+	host_number_spinbutton.set_increments(1,10);
+
+	// Attach parasite_number_label
+	Main_table.attach(parasite_number_label,2,3,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	parasite_number_label.set_label(DefVal::PARASITE_NUMBER_LABEL_TEXT);
+
+	// Attach parasite_number_spinbutton
+	Main_table.attach(parasite_number_spinbutton,3,4,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	parasite_number_spinbutton.set_numeric(TRUE);
+	parasite_number_spinbutton.set_wrap(FALSE);
+	parasite_number_spinbutton.set_range(0, DefVal::PARASITE_NUMBER_MAX);
+	parasite_number_spinbutton.set_increments(1,10);
+
 	// Attach display_image
-	Main_table.attach(display_image,0,5,1,2, Gtk::FILL | Gtk::EXPAND, Gtk::FILL | Gtk::EXPAND,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	Main_table.attach(display_image,0,5,2,3, Gtk::FILL | Gtk::EXPAND, Gtk::FILL | Gtk::EXPAND,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	display_image.set(DefVal::DISPLAY_IMAGE_FILE_NAME);
 
 	// Attach statistics_label
-	Main_table.attach(statistics_label,0,5,3,4, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	Main_table.attach(statistics_label,0,5,4,5, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	statistics_label.set_label(DefVal::STATISTICS_LABEL_TEXT);
 
-
 	// Attach legend_table
-	Main_table.attach(legend_table,0,5,2,3, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	Main_table.attach(legend_table,0,5,3,4, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
 	legend_table.resize(1,12); // Resize table
 	add(legend_table);
 	// Attach legend_1_image
