@@ -58,6 +58,9 @@ Main_Window::Main_Window(void) {
 	host_combobox.set_wrap_width(DefVal::HOST_COMBOBOX_WRAP_WIDTH);
 	host_combobox.set_title(DefVal::HOST_COMBOBOX_TITLE);
 	Fill_host_combobox();
+	// Link the option chosen in the combobox to the display of a profile
+	host_combobox.signal_changed().connect(sigc::mem_fun(*this, &Main_Window::change_central_pic));
+
 
 	// Attach generation_number_label
 	Main_table.attach(generation_number_label,2,3,0,1, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
@@ -84,8 +87,47 @@ Main_Window::Main_Window(void) {
 	Main_table.attach(statistics_label,0,1,2,3, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	statistics_label.set_label(DefVal::STATISTICS_LABEL_TEXT);
 
-	// Link the option chosen in the combobox to the display of a profile
-	host_combobox.signal_changed().connect(sigc::mem_fun(*this, &Main_Window::change_central_pic));
+
+	// Attach legend_table
+	Main_table.attach(legend_table,1,5,2,3, Gtk::FILL | Gtk::EXPAND, Gtk::FILL | Gtk::EXPAND,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	legend_table.resize(1,12); // Resize table
+	add(legend_table);
+	// Attach legend_1_image
+	legend_table.attach(legend_1_image,0,1,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_1_image.set(DefVal::LEGEND_1_IMAGE_FILE_NAME);
+	// Attach legend_1_label
+	legend_table.attach(legend_1_label,1,2,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_1_label.set_label(DefVal::LEGEND_1_LABEL);
+	// Attach legend_2_image
+	legend_table.attach(legend_2_image,2,3,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_2_image.set(DefVal::LEGEND_2_IMAGE_FILE_NAME);
+	// Attach legend_2_label
+	legend_table.attach(legend_2_label,3,4,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_2_label.set_label(DefVal::LEGEND_2_LABEL);
+	// Attach legend_3_image
+	legend_table.attach(legend_3_image,4,5,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_3_image.set(DefVal::LEGEND_3_IMAGE_FILE_NAME);
+	// Attach legend_3_label
+	legend_table.attach(legend_3_label,5,6,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_3_label.set_label(DefVal::LEGEND_3_LABEL);
+	// Attach legend_4_image
+	legend_table.attach(legend_4_image,6,7,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_4_image.set(DefVal::LEGEND_4_IMAGE_FILE_NAME);
+	// Attach legend_4_label
+	legend_table.attach(legend_4_label,7,8,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_4_label.set_label(DefVal::LEGEND_4_LABEL);
+	// Attach legend_5_image
+	legend_table.attach(legend_5_image,8,9,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_5_image.set(DefVal::LEGEND_5_IMAGE_FILE_NAME);
+	// Attach legend_5_label
+	legend_table.attach(legend_5_label,9,10,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_5_label.set_label(DefVal::LEGEND_5_LABEL);
+	// Attach legend_3_image
+	legend_table.attach(legend_6_image,10,11,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_6_image.set(DefVal::LEGEND_6_IMAGE_FILE_NAME);
+	// Attach legend_6_label
+	legend_table.attach(legend_6_label,11,12,0,1, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	legend_6_label.set_label(DefVal::LEGEND_6_LABEL);
 
 	// Display all widgets
 	show_all();

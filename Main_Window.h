@@ -99,6 +99,20 @@ class Main_Window : public Gtk::Window {
         Gtk::ComboBoxText host_combobox;
         Gtk::Image display_image;
 
+		Gtk::Table legend_table;
+        Gtk::Image legend_1_image;
+        Gtk::Label legend_1_label;
+        Gtk::Image legend_2_image;
+        Gtk::Label legend_2_label;
+        Gtk::Image legend_3_image;
+        Gtk::Label legend_3_label;
+        Gtk::Image legend_4_image;
+        Gtk::Label legend_4_label;
+        Gtk::Image legend_5_image;
+        Gtk::Label legend_5_label;
+        Gtk::Image legend_6_image;
+        Gtk::Label legend_6_label;
+
         
         //Adjustement for spin button
 		//Gtk::Adjustment adjust_spin_button;

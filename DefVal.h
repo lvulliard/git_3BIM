@@ -20,7 +20,7 @@ using std::string;
 // =========================================================================== 
 namespace DefVal {
 	const unsigned int WINDOW_WIDTH = 800;
-	const unsigned int WINDOW_HEIGHT = 600;
+	const unsigned int WINDOW_HEIGHT = 500;
 	const unsigned int WINDOW_BORDER_WIDTH = 10;
 	const unsigned int WIDGETS_MARGIN_SIZE = 10;
 	const unsigned int GENERATION_NUMBER_MAX = 100;
@@ -47,6 +47,20 @@ namespace DefVal {
 	const string HOST_COMBOBOX_TITLE = "Choose Host";
 	const string DISPLAY_IMAGE_FILE_NAME = "host_2.jpg";
 	const string PIC_FORMAT = ".ppm";
+
+	const string LEGEND_1_IMAGE_FILE_NAME = "legend_1.ppm";
+	const string LEGEND_1_LABEL = "Environment";
+	const string LEGEND_2_IMAGE_FILE_NAME = "legend_2.ppm";
+	const string LEGEND_2_LABEL = "Host";
+	const string LEGEND_3_IMAGE_FILE_NAME = "legend_3.ppm";
+	const string LEGEND_3_LABEL = "Parasite";
+	const string LEGEND_4_IMAGE_FILE_NAME = "legend_4.ppm";
+	const string LEGEND_4_LABEL = "Environment, Host";
+	const string LEGEND_5_IMAGE_FILE_NAME = "legend_5.ppm";
+	const string LEGEND_5_LABEL = "Host, Parasite";
+	const string LEGEND_6_IMAGE_FILE_NAME = "legend_6.ppm";
+	const string LEGEND_6_LABEL = "Environment, Host, Parasite";
+	const unsigned int LEGEND_WIDGETS_MARGIN_SIZE = 5;
 
 	const unsigned int MAX_VAL_PICTURE= 255;
 }
