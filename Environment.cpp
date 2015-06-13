@@ -73,7 +73,6 @@ void Environment::runGraphics(void)
   // Print profiles in pictures
   for (int i = 0; i < DefVal::NB_HOSTS; ++i)
   {
-    printf("Fait pour %d!\n",i);
     hosts[i].format_and_save(profileFunction(),i);
   }
 }

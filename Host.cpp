@@ -65,12 +65,12 @@ Triangle* Host::generateTriangles(int whatAmI)
   int n_triangles;
   int i;
   if (whatAmI==0){
-    wmax = int(DefVal::PIC_WIDTH*DefVal::HOST_WIDTH/100.0);
-    hmax = int(DefVal::PIC_HEIGHT*DefVal::HOST_HEIGHT/100.0);
+    wmax = int(DefVal::PIC_WIDTH*double(DefVal::HOST_WIDTH)/100.0);
+    hmax = int(DefVal::PIC_HEIGHT*double(DefVal::HOST_HEIGHT)/100.0);
     n_triangles = DefVal::N_TRIANGLES_HOST;
   } else if (whatAmI==1) {
-    wmax = int(DefVal::PIC_WIDTH*DefVal::PARASITE_WIDTH/100.0);
-    hmax = int(DefVal::PIC_HEIGHT*DefVal::PARASITE_HEIGHT/100.0);
+    wmax = int(DefVal::PIC_WIDTH*double(DefVal::PARASITE_WIDTH)/100.0);
+    hmax = int(DefVal::PIC_HEIGHT*double(DefVal::PARASITE_HEIGHT)/100.0);
     n_triangles = DefVal::N_TRIANGLES_PARASITE;
   }
   Triangle* triangles;
