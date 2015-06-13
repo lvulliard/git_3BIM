@@ -223,29 +223,30 @@ unsigned char * Host::convert_pixel (unsigned int** mat_host, unsigned int** mat
       //Host
       if(mat_host[x][y]==1)
       {
-        mat_pix[3*(x+(h*w-y*w))+1]=255;
+        // (h-1 - y)*w + x
+        mat_pix[3*(x+(h-y-1)*w)+1]=255;
       }
       else
       {
-        mat_pix[3*(x+(h*w-y*w))+1]=0;
+        mat_pix[3*(x+(h-y-1)*w)+1]=0;
       }
       //Environment
       if(mat_envt[x][y]==1)
       {
-        mat_pix[3*(x+(h*w-y*w))+2]=255;
+        mat_pix[3*(x+(h-y-1)*w)+2]=255;
       }
       else
       {
-        mat_pix[3*(x+(h*w-y*w))]=0;
+        mat_pix[3*(x+(h-y-1)*w)+2]=0;
       }
       //Parasite
       if(mat_para[x][y]==1)
       {
-        mat_pix[3*(x+(h*w-y*w))]=255;
+        mat_pix[3*(x+(h-y-1)*w)]=255;
       }
       else
       {
-        mat_pix[3*(x+(h*w-y*w))]=0;
+        mat_pix[3*(x+(h-y-1)*w)]=0;
       }
     }
   }
@@ -259,7 +260,6 @@ void Host::format_and_save(unsigned int** mat_envt, int id)
     // parasite matrix
     unsigned int ** mat_par= matrixGenerator(); // Not implemented yet
     unsigned char * pix= convert_pixel(mat_host, mat_envt, mat_par);
-    //printf("%d%s", id, DefVal::PIC_FORMAT.c_str());
     char name[100];
     sprintf(name,"host_%d%s", id, DefVal::PIC_FORMAT.c_str());
     save_picture(pix, name);
