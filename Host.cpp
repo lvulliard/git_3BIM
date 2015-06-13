@@ -12,7 +12,6 @@
 // ===========================================================================
 
 #include <math.h>
-#include <time.h>
 
 // ===========================================================================
 //                                 Project Files
@@ -23,7 +22,7 @@
 
 //############################################################################
 //                                                                           #
-//                        	  		Class Host                            	 #
+//                        	  		Class Host                              	 #
 //                                                                           #
 //############################################################################
 
@@ -34,7 +33,8 @@
 
 Host::Host(void)
 {
-  matrix=NULL;
+  matrix = NULL;
+  //unsigned int** mat = matrixGenerator(); 
   n_genes = DefVal::N_TRIANGLES_HOST;
 }
 
@@ -55,7 +55,6 @@ Host::~Host(void)
 // Takes the number of genes as parameter and returns a table of triangles with random but controlled attributes
 Triangle* Host::randomGenes(void)
 {
-  srand (time(NULL));
   int win_width = DefVal::WINDOW_WIDTH;
   Triangle* genes;
   genes = new Triangle[n_genes];
