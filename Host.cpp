@@ -68,11 +68,13 @@ Triangle* Host::randomGenes(void)
     if (random_w%2 == 1)
       random_w-=1;
 
-    genes[i].x = random_x;
-    genes[i].w = random_w;
-    genes[i].h = random_h;
-
-    //printf("%d %d %d\n", genes[i].x, genes[i].w, genes[i].h);
+    if ((random_x != 0) && (random_w != 0) && (random_h != 0))
+    {
+      genes[i].x = random_x;
+      genes[i].w = random_w;
+      genes[i].h = random_h;
+    }
+    
   }
 
   // Check boundaries
