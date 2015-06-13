@@ -34,7 +34,7 @@
 
 Host::Host(void)
 {
-
+  //To delete?
   matrix = NULL;
   //unsigned int** mat = matrixGenerator(); 
   n_genes = DefVal::N_TRIANGLES_HOST;
@@ -46,6 +46,7 @@ Host::Host(void)
 // ===========================================================================
 Host::~Host(void)
 {
+  delete matrix;
 }
 
 
@@ -64,6 +65,7 @@ Triangle* Host::generateTriangles(int whatAmI)
   int wmax;
   int hmax;
   int n_triangles;
+  int i;
   if (whatAmI==0){
     wmax = int(DefVal::PIC_WIDTH*DefVal::HOST_WIDTH/100);
     hmax = int(DefVal::PIC_HEIGHT*DefVal::HOST_HEIGHT/100);
@@ -76,12 +78,13 @@ Triangle* Host::generateTriangles(int whatAmI)
   Triangle* triangles;
   triangles = new Triangle[n_triangles];
 
-  for (int i=0; i<n_triangles; i++) 
-  int win_width = DefVal::WINDOW_WIDTH;
-  Triangle* genes;
-  genes = new Triangle[n_genes];
- 
-  for (int i=0; i<n_genes; i++) 
+  for (i=0; i<n_triangles; i++) 
+  {
+    //int win_width = DefVal::WINDOW_WIDTH;
+    Triangle* genes;
+    genes = new Triangle[n_genes];
+  }
+  for (i=0; i<n_triangles; i++) 
   {
     int random_x = 10+(rand()%(int)(win_width-20+1)); // Position of triangle (random in range(10,win_width))
     int random_w = wmin+(rand()%(int)(wmax-wmin+1)); // Random number btw wmin and wmax
@@ -89,26 +92,15 @@ Triangle* Host::generateTriangles(int whatAmI)
 
     if (random_w%2 == 1)
       random_w-=1;
+    
     triangles[i].x = random_x;
     triangles[i].w = random_w;
     triangles[i].h = random_h;
-    //printf("%d %d %d\n", random_x, random_w, random_h); 
-    //printf("%d %f %f\n", triangles[i].x, triangles[i].w, triangles[i].h);
-    
-    }
-
-
-    if ((random_x != 0) && (random_w != 0) && (random_h != 0))
-    {
-      genes[i].x = random_x;
-      genes[i].w = random_w;
-      genes[i].h = random_h;
-    }
     
   }
 
   // Check boundaries
-  for (int i=0; i<n_triangles; i++)
+  for (i=0; i<n_triangles; i++)
   {
     if (triangles[i].x-0.5*triangles[i].w < 0) // Checks if triangle is too much on the left...
       triangles[i].w = 2*triangles[i].x; // ...and corrects its width
@@ -119,10 +111,10 @@ Triangle* Host::generateTriangles(int whatAmI)
   return triangles;
 }
 
-int* Host::triangleProfile(Triangle* triangles, int size_triangles)
+unsigned int* Host::triangleProfile(Triangle* triangles, int size_triangles)
 {
-  int* profile;
-  profile = new int[DefVal::PIC_WIDTH]; // An array of 500 values.
+  unsigned int* profile;
+  profile = new unsigned int[DefVal::PIC_WIDTH]; // An array of 500 values.
   int y;
   for (y=0; y<int(DefVal::PIC_WIDTH); y++) {
     profile[y] = 0; // Initialize all values to 0
@@ -150,30 +142,16 @@ int* Host::triangleProfile(Triangle* triangles, int size_triangles)
 }
 
 // Generates matrix of 0s and 1s depending on weather we're below or above the profile
-int** Host::matrixGenerator(Triangle* triangles, int size_triangles)
+unsigned int** Host::matrixGenerator(Triangle* triangles, int size_triangles)
 
-
- // Generates matrix of 0s and 1s depending on weather we're below or above the profile
-unsigned int** Host::matrixGenerator(void)
 {
   int win_width = DefVal::PIC_WIDTH;
   int win_height = DefVal::PIC_HEIGHT;
-  int* prof = triangleProfile(triangles, size_triangles);
+  unsigned int* prof = triangleProfile(triangles, size_triangles);
 
-  int** mat = new int*[win_width]; // Creation of lines
+  unsigned int** mat = new unsigned int*[win_width]; // Creation of lines
   for (int x=0; x<win_width; x++)
-    mat[x] = new int[win_height]; // Creation of columns
-  
-  for (int x=0; x<win_width; x++) // For each column of my matrix...
-
-  int* prof = Triangleprofile(); 
-
-
-  unsigned int** mat = new unsigned int*[win_width];            // Creation of lines
-  for (int x=0; x<win_width; x++)
-  { 
-    mat[x] = new unsigned int[win_height];         // Creation of columns
-  }
+    mat[x] = new unsigned int[win_height]; // Creation of columns
 
   for (int x=0; x<win_width; x++)        // For each column of my matrix...
   {
@@ -282,9 +260,9 @@ unsigned char * Host::convert_pixel (unsigned int** mat_host, unsigned int** mat
 void Host::format_and_save(unsigned int** mat_envt, int id)
 {
 	// host matrix
-    unsigned int** mat_host= matrixGenerator();
+    unsigned int** mat_host= matrixGenerator(generateTriangles(0), DefVal::N_TRIANGLES_HOST);
     // parasite matrix
-    unsigned int ** mat_par= matrixGenerator(); // Not implemented yet
+    unsigned int ** mat_par= matrixGenerator(generateTriangles(1), DefVal::N_TRIANGLES_PARASITE);
     unsigned char * pix= convert_pixel(mat_host, mat_envt, mat_par);
     char name[100];
     sprintf(name,"host_%d%s", id, DefVal::PIC_FORMAT.c_str());

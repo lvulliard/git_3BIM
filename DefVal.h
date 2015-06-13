@@ -27,17 +27,13 @@ namespace DefVal {
 	const unsigned int PIC_WIDTH = 800;
 	const unsigned int PIC_HEIGHT = 500; // must be >= 500
 	const unsigned int HOST_COMBOBOX_WRAP_WIDTH = 1;
-
 	const int N_TRIANGLES_HOST = 30;
 	const int N_TRIANGLES_PARASITE = 20;
 	const int HOST_WIDTH = 10; // For max width. To be given as a PERCENTAGE of the PIC_WIDTH. Here 10%
 	const int HOST_HEIGHT = 15; // PERCENTAGE of PIC_HEIGHT
 	const int PARASITE_WIDTH = 5; // PERCENTAGE
 	const int PARASITE_HEIGHT = 7; // PERCENTAGE
-
-
 	const unsigned int NB_HOSTS = 11;
-	const unsigned int N_TRIANGLES_HOST = 30;
 	
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";

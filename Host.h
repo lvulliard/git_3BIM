@@ -67,11 +67,9 @@ class Host
     // =======================================================================
 
     Triangle* generateTriangles(int whatAmI);
-    int* triangleProfile(Triangle* triangles, int size_triangles);
-    int** matrixGenerator(Triangle* triangles, int size_triangles);
+    unsigned int* triangleProfile(Triangle* triangles, int size_triangles);
+    unsigned int** matrixGenerator(Triangle* triangles, int size_triangles);
     Triangle* randomGenes(void);
-    int* Triangleprofile(void);
-    unsigned int** matrixGenerator(void);
     void mutation(void);
     // Save picture with a matrix of pixel value
     void save_picture(unsigned char * pix, char* picture_name);
