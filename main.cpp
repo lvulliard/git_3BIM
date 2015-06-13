@@ -50,29 +50,31 @@ int main(int argc, char* argv[]) {
     // Display the Window object and start the main loop
     Gtk::Main::run(fenetre);
     
-    //Giorgia and Noelie test
     Host h;
     int i;
     int x;
     int y;
+    int size_hosts = DefVal::N_TRIANGLES_HOST;
+    int size_paras = DefVal::N_TRIANGLES_PARASITE;
+
+    /*
+    Triangle* t = h.generateTriangles(1);
+    for (i=0; i<size_paras; i++)
+        printf("%d %f %f \n",t[i].x, t[i].w, t[i].h);*/
     
     /*
-    Triangle* t = h.randomGenes();
-    for (i=0; i<DefVal::N_TRIANGLES_HOST; i++)
-      printf("%d %d %d \n",t[i].x, t[i].w, t[i].h);
+    int* p = h.triangleProfile(t,size_paras);
+    for (i=0; i<DefVal::PIC_WIDTH; i++)
+        printf("%d %d\n",i,p[i]);*/
     
-    
-    int** p = h.Triangleprofile();
-    for (i=0; i<DefVal::WINDOW_WIDTH ;i++)
-        printf("%d %d\n",p[0][i],p[1][i]);
-    */
 
-    int** m = h.matrixGenerator();
+    /*
+    int** m = h.matrixGenerator(t,size_paras);
     for (x=0; x<DefVal::PIC_WIDTH; x++) {
         for (y=0; y<DefVal::PIC_HEIGHT; y++)
-            printf ("%d ", m[x][y]);
+            printf ("%f ", m[x][y]);
         printf("\n");
-    }
+    }*/
 
     //Test to save hist profil
     Host Indiv=Host();

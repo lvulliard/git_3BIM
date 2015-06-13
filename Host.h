@@ -66,11 +66,10 @@ class Host
     //                              Public Methods
     // =======================================================================
 
-    Triangle* randomGenes(void);
-    int* Triangleprofile(void);
-    int** matrixGenerator(void);
+    Triangle* generateTriangles(int whatAmI);
+    int* triangleProfile(Triangle* triangles, int size_triangles);
+    int** matrixGenerator(Triangle* triangles, int size_triangles);
     void mutation(void);
-    void newParasiteGeneration(void);
     // Save picture with a matrix of pixel value
     void save_picture(unsigned char * pix, char* picture_name);
 
@@ -92,9 +91,6 @@ class Host
     //                             Protected Attributes
     // =======================================================================
 
-    Triangle parasite;
-    int** matrix;
-    int n_genes;
 
 };
 
