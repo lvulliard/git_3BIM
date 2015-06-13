@@ -25,14 +25,14 @@ namespace DefVal {
 	const unsigned int WIDGETS_MARGIN_SIZE = 10;
 	const unsigned int GENERATION_NUMBER_MAX = 100;
 	const unsigned int PIC_WIDTH = 800;
-	const unsigned int PIC_HEIGHT = 500; // must be >= 500
+	const unsigned int PIC_HEIGHT = 500;
 	const unsigned int HOST_COMBOBOX_WRAP_WIDTH = 1;
 	const int N_TRIANGLES_HOST = 30;
 	const int N_TRIANGLES_PARASITE = 20;
-	const int HOST_WIDTH = 10; // For max width. To be given as a PERCENTAGE of the PIC_WIDTH. Here 10%
-	const int HOST_HEIGHT = 15; // PERCENTAGE of PIC_HEIGHT
-	const int PARASITE_WIDTH = 5; // PERCENTAGE
-	const int PARASITE_HEIGHT = 7; // PERCENTAGE
+	const int HOST_WIDTH = 20; // For max width. To be given as a PERCENTAGE of the PIC_WIDTH. Here 10%
+	const int HOST_HEIGHT = 95; // PERCENTAGE of PIC_HEIGHT
+	const int PARASITE_WIDTH = 12; // PERCENTAGE
+	const int PARASITE_HEIGHT = 90; // PERCENTAGE
 	const unsigned int NB_HOSTS = 11;
 	
 
@@ -45,7 +45,7 @@ namespace DefVal {
 	const string HOST_LABEL_TEXT = "Host:";
 	const string STATISTICS_LABEL_TEXT = "Statistics: :'(";
 	const string HOST_COMBOBOX_TITLE = "Choose Host";
-	const string DISPLAY_IMAGE_FILE_NAME = "host_2.jpg";
+	const string DISPLAY_IMAGE_FILE_NAME = "host_2.ppm";
 	const string PIC_FORMAT = ".ppm";
 
 	const string LEGEND_1_IMAGE_FILE_NAME = "legend_1.ppm";
