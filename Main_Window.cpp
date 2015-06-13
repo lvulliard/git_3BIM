@@ -104,11 +104,12 @@ Main_Window::Main_Window(void) {
 
 void Main_Window::Fill_host_combobox(void){
 	// Add entries to the combobox
-	host_combobox.append("host_1");
-	host_combobox.append("host_2");
-	host_combobox.append("host_3");
-	host_combobox.append("host_4");
-	host_combobox.append("host_5");
+  	for (int i = 0; i < DefVal::NB_HOSTS; ++i)
+  	{
+  		char name[100];
+    	sprintf(name,"host_%d", i);
+    	host_combobox.append(name);
+ 	}	
 	host_combobox.set_active_text("host_2");
 }
 

@@ -97,7 +97,7 @@ class Host
     // =======================================================================
 
     Triangle parasite;
-    int** matrix;
+    unsigned int** matrix;
     int n_genes;
 
 };
