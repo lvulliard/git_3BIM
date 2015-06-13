@@ -34,10 +34,11 @@
 
 Host::Host(void)
 {
-  //To delete?
   matrix = NULL;
-  //unsigned int** mat = matrixGenerator(); 
-  n_genes = DefVal::N_TRIANGLES_HOST;
+  nb_triangles_h = DefVal::N_TRIANGLES_HOST;
+  host_triangles = generateTriangles(0,nb_triangles_h);
+  nb_triangles_p = DefVal::N_TRIANGLES_PARASITE;
+  paras_triangles = generateTriangles(1,nb_triangles_p);
 }
 
 
@@ -55,56 +56,50 @@ Host::~Host(void)
 //============================================================================
 
 // Takes 0: hosts or 1:parasites as parameter and returns a table of triangles with random but controlled attributes
-Triangle* Host::generateTriangles(int whatAmI)
+Triangle* Host::generateTriangles(int whatAmI, int howMany)
 {
   int win_width = DefVal::PIC_WIDTH;
   int wmin = 10;
   int hmin = 10;
   int wmax;
   int hmax;
-  int n_triangles;
-  int i;
+  int n_triangles = howMany;
+
   if (whatAmI==0){
-    wmax = int(DefVal::PIC_WIDTH*double(DefVal::HOST_WIDTH)/100.0);
-    hmax = int(DefVal::PIC_HEIGHT*double(DefVal::HOST_HEIGHT)/100.0);
-    n_triangles = DefVal::N_TRIANGLES_HOST;
+    wmax = int(DefVal::PIC_WIDTH*DefVal::HOST_WIDTH/100.0);
+    hmax = int(DefVal::PIC_HEIGHT*DefVal::HOST_HEIGHT/100.0);
+
   } else if (whatAmI==1) {
-    wmax = int(DefVal::PIC_WIDTH*double(DefVal::PARASITE_WIDTH)/100.0);
-    hmax = int(DefVal::PIC_HEIGHT*double(DefVal::PARASITE_HEIGHT)/100.0);
-    n_triangles = DefVal::N_TRIANGLES_PARASITE;
+    wmax = int(DefVal::PIC_WIDTH*DefVal::PARASITE_WIDTH/100.0);
+    hmax = int(DefVal::PIC_HEIGHT*DefVal::PARASITE_HEIGHT/100.0);
   }
+
   Triangle* triangles;
   triangles = new Triangle[n_triangles];
-
-  for (i=0; i<n_triangles; i++) 
+ 
+  for (int i=0; i<n_triangles; i++) 
   {
-    //int win_width = DefVal::WINDOW_WIDTH;
-    Triangle* genes;
-    genes = new Triangle[n_genes];
-  }
-  for (i=0; i<n_triangles; i++) 
-  {
-    int random_x = 10+(rand()%(int)(win_width-20+1)); // Position of triangle (random in range(10,win_width))
-    int random_w = wmin+(rand()%(int)(wmax-wmin+1)); // Random number btw wmin and wmax
-    int random_h = hmin+(rand()%(int)(hmax-hmin+1)); // Random number btw hmin and hmax
+    int random_x = 10+(rand()%(int)(win_width-20+1));   // Position of triangle (random in range(10,win_width))
+    int random_w = wmin+(rand()%(int)(wmax-wmin+1));         // Random number btw wmin and wmax
+    int random_h = hmin+(rand()%(int)(hmax-hmin+1));         // Random number btw hmin and hmax
 
     if (random_w%2 == 1)
       random_w-=1;
-    
+
     triangles[i].x = random_x;
     triangles[i].w = random_w;
     triangles[i].h = random_h;
-    
   }
 
   // Check boundaries
-  for (i=0; i<n_triangles; i++)
+  for (int i=0; i<n_triangles; i++)
   {
-    if (triangles[i].x-0.5*triangles[i].w < 0) // Checks if triangle is too much on the left...
-      triangles[i].w = 2*triangles[i].x; // ...and corrects its width
-    if (triangles[i].x+0.5*triangles[i].w > win_width) // Checks if triangle is too much on the right
+    if (triangles[i].x-0.5*triangles[i].w < 0)            // Checks if triangle is too much on the left...
+      triangles[i].w = 2*triangles[i].x;                  // ...and corrects its width
+    if (triangles[i].x+0.5*triangles[i].w > win_width)    // Checks if triangle is too much on the right
       triangles[i].w = 2*(win_width-triangles[i].x);
   }
+
 
   return triangles;
 }
@@ -198,25 +193,25 @@ unsigned int ** Host::pix_to_mat(char * name_pic, int count) const
 
 
 
-int Host::getFitness(unsigned int** proE) const
+double Host::getFitness(unsigned int** proE)
 {
-	// NOT TESTED YET
-	//unsigned int** proH = matrice; // host profile
-	//unsigned int** proP = getParasiteProfile(); // parasite profile
-
-	float fitness = 1.0;
-	for (int x = 0; x < DefVal::PIC_WIDTH; ++x) // parse on x
+  unsigned int** proH = matrixGenerator(host_triangles,nb_triangles_h); // host profile
+  unsigned int** proP = matrixGenerator(paras_triangles,nb_triangles_p); // parasite profile
+	
+  float fitness = 1.0;
+	
+  for (int x = 0; x < DefVal::PIC_WIDTH; ++x) // parse on x
 	{
 		for (int y = 0; y < DefVal::PIC_HEIGHT; ++y) // parse on y
 		{
-			// if (proH[x][y] == 1) && (proE[x][y] == 0) || (proH[x][y] == 0) && (proE[x][y] == 1)	// If a point of the profile is not in the enveloppe, or other way around 
-			// {
-			// 	fitness += 1; // Not good
-			// }
-			// if (proH[x][y] == 1) && (proV[x][y] ==1) // If a point of the profile is infected by the parasite
-			// {
-			// 	fitness += 1; // Not good
-			// }
+			if ( ((proH[x][y] == 1) && (proE[x][y] == 0)) || ((proH[x][y] == 0) && (proE[x][y] == 1))  )	// If a point of the profile is not in the enveloppe, or other way around 
+			{
+				fitness += 1; // Not good
+			}
+			if ((proH[x][y] == 1) && (proP[x][y] ==1)) // If a point of the profile is infected by the parasite
+			{
+				fitness += 1; // Not good
+			}
 		}	
 	}
 	return 1/fitness; // Inverse of what is not good
@@ -287,9 +282,9 @@ unsigned char * Host::convert_pixel (unsigned int** mat_host, unsigned int** mat
 void Host::format_and_save(unsigned int** mat_envt, int id)
 {
 	// host matrix
-    unsigned int** mat_host= matrixGenerator(generateTriangles(0), DefVal::N_TRIANGLES_HOST);
+    unsigned int** mat_host= matrixGenerator(host_triangles, DefVal::N_TRIANGLES_HOST);
     // parasite matrix
-    unsigned int ** mat_par= matrixGenerator(generateTriangles(1), DefVal::N_TRIANGLES_PARASITE);
+    unsigned int ** mat_par= matrixGenerator(paras_triangles, DefVal::N_TRIANGLES_PARASITE);
     unsigned char * pix= convert_pixel(mat_host, mat_envt, mat_par);
     char name[100];
     sprintf(name,"host_%d%s", id, DefVal::PIC_FORMAT.c_str());

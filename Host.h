@@ -51,7 +51,7 @@ class Host
     //                            Accessors: getters
     // =======================================================================
 	
-    int getFitness(unsigned int**) const;
+    double getFitness(unsigned int**);
 
 
 
@@ -66,7 +66,7 @@ class Host
     //                              Public Methods
     // =======================================================================
 
-    Triangle* generateTriangles(int whatAmI);
+    Triangle* generateTriangles(int whatAmI, int howMany);
     unsigned int* triangleProfile(Triangle* triangles, int size_triangles);
     unsigned int** matrixGenerator(Triangle* triangles, int size_triangles);
     Triangle* randomGenes(void);
@@ -96,11 +96,11 @@ class Host
     // =======================================================================
     //                             Protected Attributes
     // =======================================================================
-
-    Triangle parasite;
     unsigned int** matrix;
-    int n_genes;
-
+    int nb_triangles_h;
+    int nb_triangles_p;
+    Triangle* host_triangles;
+    Triangle* paras_triangles;
 };
 
 
