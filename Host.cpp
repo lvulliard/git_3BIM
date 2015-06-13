@@ -167,7 +167,36 @@ unsigned int** Host::matrixGenerator(Triangle* triangles, int size_triangles)
   return mat;
 }
 
-
+unsigned int ** Host::pix_to_mat(char * name_pic, int count) const
+{
+  unsigned int w=DefVal::PIC_WIDTH;
+  unsigned int h=DefVal::PIC_HEIGHT;
+  unsigned char* pix=new unsigned char [3*w*h];
+  unsigned int** matH = new unsigned int*[w]; // Creation of lines
+  int x, y;
+  for (x=0; x<w; x++)
+    matH[x] = new unsigned int[h]; // Creation of columns
+  
+  FILE * fi=fopen(name_pic, "rb");
+  fread(pix,sizeof(unsigned char), 3*w*h, fi);
+  for(x=0; x<w; x++)
+  {
+    for(y=0; y<h; y++)
+    {
+      if(pix[count]==255)
+      {
+        matH[x][h-y-1]=1;
+      }
+      else
+      {
+        matH[x][h-y-1]=0; 
+      }
+      count++;
+    }
+  } 
+  delete pix;
+  return matH;
+}
 
 
 
@@ -267,4 +296,5 @@ void Host::format_and_save(unsigned int** mat_envt, int id)
     char name[100];
     sprintf(name,"host_%d%s", id, DefVal::PIC_FORMAT.c_str());
     save_picture(pix, name);
+    pix_to_mat(name, 0);
 }

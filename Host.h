@@ -76,6 +76,7 @@ class Host
     unsigned char* convert_pixel(unsigned int** mat_host, unsigned int** mat_envt, unsigned int** mat_para);
     // Compute the matrix of the 3 profiles and print it
     void format_and_save(unsigned int**, int);
+    unsigned int ** pix_to_mat(char * name_pic, int T) const;
 
 
     // =======================================================================

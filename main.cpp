@@ -45,15 +45,6 @@ int main(int argc, char* argv[]) {
     Environment env;    
     env.runGraphics();
 
-    //Test to save hist profil
-    // Host Indiv= Host();
-    // int** mat_host=Indiv.matrixGenerator();
-    // int ** mat_envt=Indiv.matrixGenerator();
-    // int ** mat_par=Indiv.matrixGenerator();
-    // unsigned char * pix=Indiv.convert_pixel(mat_host, mat_envt, mat_par);
-    // char* name="WORKs.ppm";
-    // Indiv.save_picture(pix, name);
-
     // Initiate Gtk
     Gtk::Main app(argc, argv);
     // Create the Window object
@@ -62,13 +53,13 @@ int main(int argc, char* argv[]) {
     Gtk::Main::run(fenetre);
     
 
-    Host h;
+    /*Host h;
     int i;
     int x;
     int y;
     int size_hosts = DefVal::N_TRIANGLES_HOST;
     int size_paras = DefVal::N_TRIANGLES_PARASITE;
-
+    */
 
     //Giorgia and Noelie test
     // Host h;
@@ -91,14 +82,9 @@ int main(int argc, char* argv[]) {
 
     /*
     int** m = h.matrixGenerator(t,size_paras);
-=======
     int** p = h.Triangleprofile();
     for (i=0; i<DefVal::WINDOW_WIDTH ;i++)
         printf("%d %d\n",p[0][i],p[1][i]);
-    
-    */
-    /*int** m = h.matrixGenerator();
->>>>>>> ca11bb1fb7ac76f68baa95aeded237586193477f
     for (x=0; x<DefVal::PIC_WIDTH; x++) {
         for (y=0; y<DefVal::PIC_HEIGHT; y++)
             printf ("%f ", m[x][y]);
