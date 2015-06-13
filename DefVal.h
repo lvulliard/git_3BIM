@@ -60,7 +60,7 @@ namespace DefVal {
 	const string LEGEND_5_LABEL = "Host, Parasite";
 	const string LEGEND_6_IMAGE_FILE_NAME = "legend_6.ppm";
 	const string LEGEND_6_LABEL = "Environment, Host, Parasite";
-	const unsigned int LEGEND_WIDGETS_MARGIN_SIZE = 5;
+	const unsigned int LEGEND_WIDGETS_MARGIN_SIZE = 2;
 
 	const unsigned int MAX_VAL_PICTURE= 255;
 }

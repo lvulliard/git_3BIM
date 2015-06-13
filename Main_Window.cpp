@@ -84,12 +84,12 @@ Main_Window::Main_Window(void) {
 	display_image.set(DefVal::DISPLAY_IMAGE_FILE_NAME);
 
 	// Attach statistics_label
-	Main_table.attach(statistics_label,0,1,3,4, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	Main_table.attach(statistics_label,0,5,3,4, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	statistics_label.set_label(DefVal::STATISTICS_LABEL_TEXT);
 
 
 	// Attach legend_table
-	Main_table.attach(legend_table,0,5,2,3, Gtk::FILL | Gtk::EXPAND, Gtk::FILL | Gtk::EXPAND,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
+	Main_table.attach(legend_table,0,5,2,3, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
 	legend_table.resize(1,12); // Resize table
 	add(legend_table);
 	// Attach legend_1_image
