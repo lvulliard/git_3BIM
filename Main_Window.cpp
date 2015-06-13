@@ -86,6 +86,7 @@ Main_Window::Main_Window(void) {
 	host_number_spinbutton.set_numeric(TRUE);
 	host_number_spinbutton.set_wrap(FALSE);
 	host_number_spinbutton.set_range(1, DefVal::HOST_NUMBER_MAX);
+	host_number_spinbutton.set_value(DefVal::HOST_NUMBER_DEFAULT);
 	host_number_spinbutton.set_increments(1,10);
 	host_number_spinbutton.signal_value_changed().connect(sigc::mem_fun(*this, &Main_Window::host_number_spinbutton_changed));
 
@@ -98,6 +99,7 @@ Main_Window::Main_Window(void) {
 	parasite_number_spinbutton.set_numeric(TRUE);
 	parasite_number_spinbutton.set_wrap(FALSE);
 	parasite_number_spinbutton.set_range(0, DefVal::PARASITE_NUMBER_MAX);
+	parasite_number_spinbutton.set_value(DefVal::PARASITE_NUMBER_DEFAULT);
 	parasite_number_spinbutton.set_increments(1,10);
 	parasite_number_spinbutton.signal_value_changed().connect(sigc::mem_fun(*this, &Main_Window::parasite_number_spinbutton_changed));
 

@@ -36,7 +36,9 @@ namespace DefVal {
 	const int PARASITE_WIDTH = 12; // PERCENTAGE
 	const int PARASITE_HEIGHT = 90; // PERCENTAGE
 	const unsigned int NB_HOSTS = 11;
-	
+	const unsigned int HOST_NUMBER_DEFAULT = 15;
+	const unsigned int PARASITE_NUMBER_DEFAULT = 10;
+
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";
 	const string APP_NAME = "Coevolution Model";
