@@ -32,6 +32,7 @@
 //							 Include Project Files
 // ===========================================================================
 
+#include "Environment.h"
 
 // ===========================================================================
 //								Class declarations
@@ -119,7 +120,7 @@ class Main_Window : public Gtk::Window {
         Gtk::Image legend_6_image;
         Gtk::Label legend_6_label;
 
-        
+        Environment env;
         //Adjustement for spin button
 		//Gtk::Adjustment adjust_spin_button;
 		// *gtk_adjustment_new( gfloat 0, gfloat 0, gfloat 100, gfloat 1, gfloat 1, gfloat page_size );

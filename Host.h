@@ -86,8 +86,6 @@ class Host
     // =======================================================================
 
 
-
-
   protected :
 
     // =======================================================================
@@ -103,6 +101,7 @@ class Host
     int nb_triangles_p;
     Triangle* host_triangles;
     Triangle* paras_triangles;
+
 };
 
 

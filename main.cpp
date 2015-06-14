@@ -42,9 +42,7 @@
 
 int main(int argc, char* argv[]) {
     srand (time(NULL));
-    Environment env;    
-    env.runGraphics();
-
+      
     // Initiate Gtk
     Gtk::Main app(argc, argv);
     // Create the Window object

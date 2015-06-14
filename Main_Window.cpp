@@ -18,6 +18,7 @@
 
 #include "DefVal.h"
 #include "Main_Window.h"
+#include "Environment.h"
 #include <string>
 
 
@@ -35,6 +36,8 @@
 
 
 Main_Window::Main_Window(void) {
+	env.saveGraphics();
+
 	// Set the title
 	set_title(DefVal::APP_NAME);
 	// Set icon
@@ -190,6 +193,10 @@ void Main_Window::Start_button_clicked(void)
 	int n;
 	n = generation_number_spinbutton.get_value();
 	printf("Uuuuuuuh: %d generations\n",n);
+	for(int i = 0; i < n; i++)
+	{
+		printf("Cool.\n");
+	}
 }
 
 void Main_Window::host_number_spinbutton_changed(void)

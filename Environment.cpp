@@ -59,10 +59,28 @@ Environment::~Environment(void)
 //============================================================================
 void Environment::newGeneration(void)
 {
+  Host* new_hosts[DefVal::NB_HOSTS];
+
+//   int new_size=0;
+  
+//   Host* new_hosts = new Host[DefVal::NB_HOSTS];
+
+//   int count = 0;
+//   int* fecondity = getFecondity();
+//   for (int k=0; k<DefVal::NB_HOSTS; k++){
+//       for(int i = 0; i < fecondity[k]; i++){
+//         new_hosts[count].paras_triangles = hosts[k].paras_triangles;
+//         new_hosts[count].host_triangles = hosts[k].evolutionTriangles(); 
+//         count++;
+//       }
+//     }
+
+//   delete[] hosts;
+//   hosts = new_hosts;
 }
     
 
-void Environment::runGraphics(void)
+void Environment::saveGraphics(void)
 {
   // Print profiles in pictures
   for (int i = 0; i < DefVal::NB_HOSTS; ++i)

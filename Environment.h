@@ -65,7 +65,7 @@ class Environment
     // =======================================================================
     unsigned int** profileFunction(void);
     void newGeneration(void);
-    void runGraphics(void);
+    void saveGraphics(void);
     void saveLog(void);
 
 
