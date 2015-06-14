@@ -43,7 +43,7 @@ Environment::Environment(void)
   hosts = new Host[DefVal::NB_HOSTS];
   for (int i = 0; i < DefVal::NB_HOSTS ; i++)
   {
-    hosts[i] = Host();
+    hosts[i] = Host(1);
   }  
 }
 
@@ -76,7 +76,7 @@ void Environment::newGeneration(void)
     if (p < p_cumul) // If the random value is below the cumulated probabilites
     {
       new_hosts[done] = Host(hosts[count]); // The "count" host reproduces
-      printf("NH : %d, OH : %d\n", done, count);
+      //printf("NH : %d, OH : %d; F : %f\n", done, count, new_hosts[done].getFitness( profileFunction() ) );
       done += 1; // One more host has been generated
       count = -1; // We start again to look from the first host
       p_cumul = 0;
@@ -85,7 +85,12 @@ void Environment::newGeneration(void)
     count += 1;// We go to the next host
   }
 
-  hosts = new_hosts;
+  delete [] hosts;
+  hosts = new Host [DefVal::NB_HOSTS];
+  for(int i = 0; i < DefVal::NB_HOSTS; i++)
+  {
+    hosts[i] = new_hosts[i];
+  }
 }
     
 
@@ -94,7 +99,7 @@ void Environment::saveGraphics(void)
   // Print profiles in pictures
   for (int i = 0; i < DefVal::NB_HOSTS; ++i)
   {
-    printf("Okay until %d\n", i);
+    //printf("Okay until %d\n", i);
     hosts[i].format_and_save(profileFunction(),i);
   }
 }
@@ -140,10 +145,10 @@ double* Environment::getFecondity(void) const
 
   for (int i=0; i<nb_hosts; i++) {
     fecondity[i] = exp(hosts[i].getFitness(profile) * DefVal::FECONDITY_COEFF) / all_F;
-    printf("OH : %d, F : %f\n", i, fecondity[i]);
+    //printf("OH : %d, F : %f\n", i, fecondity[i]);
     check += fecondity[i];
  }
 
-  printf("Td:%f, H:%d\n", check, nb_hosts);
+  //printf("Td:%f, H:%d\n", check, nb_hosts);
   return fecondity;
 }

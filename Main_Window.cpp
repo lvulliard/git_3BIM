@@ -198,7 +198,7 @@ void Main_Window::Start_button_clicked(void)
 		env.newGeneration();
 	}
 	
-	//env.saveGraphics();
+	env.saveGraphics();
 }
 
 // void Main_Window::host_number_spinbutton_changed(void)

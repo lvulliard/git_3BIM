@@ -34,10 +34,16 @@
 
 Host::Host(void)
 {
+  // Called as the default constructor. We want to avoid any unnecessary computations in this case
+}
+
+Host::Host(int useless_int)
+{
   nb_triangles_h = DefVal::N_TRIANGLES_HOST;
   host_triangles = generateTriangles(0,nb_triangles_h);
   nb_triangles_p = DefVal::N_TRIANGLES_PARASITE;
-  paras_triangles = generateTriangles(1,nb_triangles_p);
+  paras_triangles = generateTriangles(1,nb_triangles_p);   
+  printf("Host generation ...\n");
 }
 
 Host::Host(const Host &h2)
@@ -134,6 +140,7 @@ unsigned int* Host::triangleProfile(Triangle* triangles, int size_triangles)
   }
   for (int i=0; i<size_triangles; i++)
   {
+    //printf("%d %f %f %f\n", i, triangles[i].h, triangles[i].w, triangles[i].x);  
     int x = triangles[i].x;
     int w = triangles[i].w;
     int h = triangles[i].h;
