@@ -43,7 +43,7 @@ Host::Host(int useless_int)
   host_triangles = generateTriangles(0,nb_triangles_h);
   nb_triangles_p = DefVal::N_TRIANGLES_PARASITE;
   paras_triangles = generateTriangles(1,nb_triangles_p);   
-  printf("Host generation ...\n");
+  //printf("Host generation ...\n");
 }
 
 Host::Host(const Host &h2)
