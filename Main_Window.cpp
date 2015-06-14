@@ -77,31 +77,31 @@ Main_Window::Main_Window(void) {
 	start_button.set_label(DefVal::START_BUTTON_LABEL);
 	start_button.signal_clicked().connect(sigc::mem_fun(*this, &Main_Window::Start_button_clicked));
 
-	// Attach host_number_label
-	Main_table.attach(host_number_label,0,1,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
-	host_number_label.set_label(DefVal::HOST_NUMBER_LABEL_TEXT);
+	// // Attach host_number_label
+	// Main_table.attach(host_number_label,0,1,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	// host_number_label.set_label(DefVal::HOST_NUMBER_LABEL_TEXT);
 
-	// Attach host_number_spinbutton
-	Main_table.attach(host_number_spinbutton,1,2,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
-	host_number_spinbutton.set_numeric(TRUE);
-	host_number_spinbutton.set_wrap(FALSE);
-	host_number_spinbutton.set_range(1, DefVal::HOST_NUMBER_MAX);
-	host_number_spinbutton.set_value(DefVal::HOST_NUMBER_DEFAULT);
-	host_number_spinbutton.set_increments(1,10);
-	host_number_spinbutton.signal_value_changed().connect(sigc::mem_fun(*this, &Main_Window::host_number_spinbutton_changed));
+	// // Attach host_number_spinbutton
+	// Main_table.attach(host_number_spinbutton,1,2,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	// host_number_spinbutton.set_numeric(TRUE);
+	// host_number_spinbutton.set_wrap(FALSE);
+	// host_number_spinbutton.set_range(1, DefVal::HOST_NUMBER_MAX);
+	// host_number_spinbutton.set_value(DefVal::HOST_NUMBER_DEFAULT);
+	// host_number_spinbutton.set_increments(1,10);
+	// host_number_spinbutton.signal_value_changed().connect(sigc::mem_fun(*this, &Main_Window::host_number_spinbutton_changed));
 
-	// Attach parasite_number_label
-	Main_table.attach(parasite_number_label,2,3,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
-	parasite_number_label.set_label(DefVal::PARASITE_NUMBER_LABEL_TEXT);
+	// // Attach parasite_number_label
+	// Main_table.attach(parasite_number_label,2,3,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	// parasite_number_label.set_label(DefVal::PARASITE_NUMBER_LABEL_TEXT);
 
-	// Attach parasite_number_spinbutton
-	Main_table.attach(parasite_number_spinbutton,3,4,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
-	parasite_number_spinbutton.set_numeric(TRUE);
-	parasite_number_spinbutton.set_wrap(FALSE);
-	parasite_number_spinbutton.set_range(0, DefVal::PARASITE_NUMBER_MAX);
-	parasite_number_spinbutton.set_value(DefVal::PARASITE_NUMBER_DEFAULT);
-	parasite_number_spinbutton.set_increments(1,10);
-	parasite_number_spinbutton.signal_value_changed().connect(sigc::mem_fun(*this, &Main_Window::parasite_number_spinbutton_changed));
+	// // Attach parasite_number_spinbutton
+	// Main_table.attach(parasite_number_spinbutton,3,4,1,2, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
+	// parasite_number_spinbutton.set_numeric(TRUE);
+	// parasite_number_spinbutton.set_wrap(FALSE);
+	// parasite_number_spinbutton.set_range(0, DefVal::PARASITE_NUMBER_MAX);
+	// parasite_number_spinbutton.set_value(DefVal::PARASITE_NUMBER_DEFAULT);
+	// parasite_number_spinbutton.set_increments(1,10);
+	// parasite_number_spinbutton.signal_value_changed().connect(sigc::mem_fun(*this, &Main_Window::parasite_number_spinbutton_changed));
 
 	// Attach display_image
 	Main_table.attach(display_image,0,5,2,3, Gtk::FILL | Gtk::EXPAND, Gtk::FILL | Gtk::EXPAND,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
@@ -192,18 +192,18 @@ void Main_Window::Start_button_clicked(void)
 	printf("Uuuuuuuh: %d generations\n",n);
 }
 
-void Main_Window::host_number_spinbutton_changed(void)
-{
-	int n;
-	n = host_number_spinbutton.get_value();
-	printf("Uuuuuuuh: %d hosts\n",n);
-}
+// void Main_Window::host_number_spinbutton_changed(void)
+// {
+// 	int n;
+// 	n = host_number_spinbutton.get_value();
+// 	printf("Uuuuuuuh: %d hosts\n",n);
+// }
 
-void Main_Window::parasite_number_spinbutton_changed(void)
-{
-	int n;
-	n = parasite_number_spinbutton.get_value();
-	printf("Uuuuuuuh: %d parasites\n",n);
-}
+// void Main_Window::parasite_number_spinbutton_changed(void)
+// {
+// 	int n;
+// 	n = parasite_number_spinbutton.get_value();
+// 	printf("Uuuuuuuh: %d parasites\n",n);
+// }
 
 
