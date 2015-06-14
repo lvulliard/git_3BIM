@@ -33,8 +33,9 @@ namespace DefVal {
 	const int HOST_HEIGHT = 95; // PERCENTAGE of PIC_HEIGHT
 	const int PARASITE_WIDTH = 12; // PERCENTAGE
 	const int PARASITE_HEIGHT = 90; // PERCENTAGE
-	const unsigned int NB_HOSTS = 11;
+	const unsigned int NB_HOSTS = 75;
 	
+	const double FECONDITY_COEFF = 715044.3; 
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";
 	const string APP_NAME = "Coevolution Model";

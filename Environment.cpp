@@ -57,12 +57,6 @@ Environment::~Environment(void)
 //============================================================================
 //  							Methods definition
 //============================================================================
-
-int* Environment::getFecondity(void) const
-{
-}
-
-
 void Environment::newGeneration(void)
 {
 }
@@ -75,6 +69,7 @@ void Environment::runGraphics(void)
   {
     hosts[i].format_and_save(profileFunction(),i);
   }
+  getFecondity();
 }
     
 
@@ -104,9 +99,20 @@ unsigned int** Environment::profileFunction(void)
   return profile;
 }
 
+int* Environment::getFecondity(void) const
+{
+  int nb_hosts = DefVal::NB_HOSTS;
+  int* fecondity = new int[nb_hosts];
+  double all_F=0;
 
+  for (int i=0; i<nb_hosts; i++)
+  {
+    all_F += exp(hosts[i].getFitness(profile) * DefVal::FECONDITY_COEFF);
+  }
 
-
-
-
-
+  for (int i=0; i<nb_hosts; i++) {
+    fecondity[i] = round(nb_hosts* exp(hosts[i].getFitness(profile) * DefVal::FECONDITY_COEFF) /all_F);
+    printf("F : %d, i : %d\n", fecondity[i], i);
+  }
+  return fecondity;
+}
