@@ -11,6 +11,7 @@
 //                               Include Libraries
 // ===========================================================================
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 #include <time.h>
 #include <gtkmm/button.h>

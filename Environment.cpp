@@ -12,6 +12,8 @@
 // ===========================================================================
 
 #include <math.h>
+#include <stdio.h>
+#include <string.h>
 
 
 // ===========================================================================
@@ -59,24 +61,31 @@ Environment::~Environment(void)
 //============================================================================
 void Environment::newGeneration(void)
 {
-  Host* new_hosts[DefVal::NB_HOSTS];
+  Host new_hosts[DefVal::NB_HOSTS];
 
-//   int new_size=0;
+  double* fecondity = getFecondity();
   
-//   Host* new_hosts = new Host[DefVal::NB_HOSTS];
+  int count = 0; // Host we're looking at
+  double p = (double)rand() / RAND_MAX; // Random value
+  double p_cumul = 0.0; // Sum of the host probabilities
+  int done = 0; // Number of new hosts generated
 
-//   int count = 0;
-//   int* fecondity = getFecondity();
-//   for (int k=0; k<DefVal::NB_HOSTS; k++){
-//       for(int i = 0; i < fecondity[k]; i++){
-//         new_hosts[count].paras_triangles = hosts[k].paras_triangles;
-//         new_hosts[count].host_triangles = hosts[k].evolutionTriangles(); 
-//         count++;
-//       }
-//     }
+  while(done < DefVal::NB_HOSTS)
+  {
+    p_cumul += fecondity[count]; //Add the probability the host we're at has a child
+    if (p < p_cumul) // If the random value is below the cumulated probabilites
+    {
+      new_hosts[done] = Host(hosts[count]); // The "count" host reproduces
+      printf("NH : %d, OH : %d\n", done, count);
+      done += 1; // One more host has been generated
+      count = -1; // We start again to look from the first host
+      p_cumul = 0;
+      p = (double)rand() / RAND_MAX;
+    }
+    count += 1;// We go to the next host
+  }
 
-//   delete[] hosts;
-//   hosts = new_hosts;
+  hosts = new_hosts;
 }
     
 
@@ -85,9 +94,9 @@ void Environment::saveGraphics(void)
   // Print profiles in pictures
   for (int i = 0; i < DefVal::NB_HOSTS; ++i)
   {
+    printf("Okay until %d\n", i);
     hosts[i].format_and_save(profileFunction(),i);
   }
-  getFecondity();
 }
     
 
@@ -117,20 +126,24 @@ unsigned int** Environment::profileFunction(void)
   return profile;
 }
 
-int* Environment::getFecondity(void) const
+double* Environment::getFecondity(void) const
 {
   int nb_hosts = DefVal::NB_HOSTS;
-  int* fecondity = new int[nb_hosts];
-  double all_F=0;
+  double* fecondity = new double[nb_hosts];
+  double all_F= 0.0;
 
+  double check = 0;
   for (int i=0; i<nb_hosts; i++)
   {
     all_F += exp(hosts[i].getFitness(profile) * DefVal::FECONDITY_COEFF);
   }
 
   for (int i=0; i<nb_hosts; i++) {
-    fecondity[i] = round(nb_hosts* exp(hosts[i].getFitness(profile) * DefVal::FECONDITY_COEFF) /all_F);
-    printf("F : %d, i : %d\n", fecondity[i], i);
-  }
+    fecondity[i] = exp(hosts[i].getFitness(profile) * DefVal::FECONDITY_COEFF) / all_F;
+    printf("OH : %d, F : %f\n", i, fecondity[i]);
+    check += fecondity[i];
+ }
+
+  printf("Td:%f, H:%d\n", check, nb_hosts);
   return fecondity;
 }

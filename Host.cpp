@@ -34,12 +34,31 @@
 
 Host::Host(void)
 {
-  matrix = NULL;
   nb_triangles_h = DefVal::N_TRIANGLES_HOST;
   host_triangles = generateTriangles(0,nb_triangles_h);
   nb_triangles_p = DefVal::N_TRIANGLES_PARASITE;
   paras_triangles = generateTriangles(1,nb_triangles_p);
 }
+
+Host::Host(const Host &h2)
+{
+  nb_triangles_h = DefVal::N_TRIANGLES_HOST;
+  nb_triangles_p = DefVal::N_TRIANGLES_PARASITE;
+  host_triangles = new Triangle [nb_triangles_h];
+  paras_triangles = new Triangle [nb_triangles_p];
+  for(int i = 0; i < nb_triangles_h; i++)
+  {
+    host_triangles[i].x = h2.host_triangles[i].x;
+    host_triangles[i].w = h2.host_triangles[i].w;
+    host_triangles[i].h = h2.host_triangles[i].h;
+  }
+  for(int i = 0; i < nb_triangles_p; i++)
+  {
+    paras_triangles[i].x = h2.paras_triangles[i].x;
+    paras_triangles[i].w = h2.paras_triangles[i].w;
+    paras_triangles[i].h = h2.paras_triangles[i].h;
+  } 
+ }
 
 
 // ===========================================================================
@@ -47,7 +66,8 @@ Host::Host(void)
 // ===========================================================================
 Host::~Host(void)
 {
-  delete matrix;
+  // delete [] host_triangles;
+  // delete [] paras_triangles;
 }
 
 
@@ -109,7 +129,7 @@ unsigned int* Host::triangleProfile(Triangle* triangles, int size_triangles)
   unsigned int* profile;
   profile = new unsigned int[DefVal::PIC_WIDTH]; // An array of 500 values.
   int y;
-  for (y=0; y<int(DefVal::PIC_WIDTH); y++) {
+  for (y=0; y < DefVal::PIC_WIDTH; y++) {
     profile[y] = 0; // Initialize all values to 0
   }
   for (int i=0; i<size_triangles; i++)
@@ -117,18 +137,19 @@ unsigned int* Host::triangleProfile(Triangle* triangles, int size_triangles)
     int x = triangles[i].x;
     int w = triangles[i].w;
     int h = triangles[i].h;
-
-    for (int x1=x-w/2; x1<=x; x1++)
-    {
-      y = int(2*(h/w)*(x1-x+w/2));
-      if (y > profile[x1])
-        profile[x1] = y;
-    }
-    for (int x2=x+1; x2<=x+w/2; x2++)
-    {
-      y = int(-2*(h/w)*(x2-x-w/2));
-      if (y > profile[x2])
-        profile[x2] = y;
+    if (w != 0){
+      for (int x1=x-w/2; x1<=x; x1++)
+      {
+        y = int(2*(h/w)*(x1-x+w/2));
+        if (y > profile[x1])
+          profile[x1] = y;
+      }
+      for (int x2=x+1; x2<=x+w/2; x2++)
+      {
+        y = int(-2*(h/w)*(x2-x-w/2));
+        if (y > profile[x2])
+          profile[x2] = y;
+      }
     }
   }
   return profile;
@@ -289,5 +310,58 @@ void Host::format_and_save(unsigned int** mat_envt, int id)
     char name[100];
     sprintf(name,"host_%d%s", id, DefVal::PIC_FORMAT.c_str());
     save_picture(pix, name);
-    pix_to_mat(name, 0);
+}
+
+Triangle* Host::evolutionTriangles(void)
+{
+  // Triangle* t = host_triangles;
+  // int n_triangles = DefVal::N_TRIANGLES_HOST;
+  // Triangle* new_t;
+  // new_t = new Triangle[n_triangles];
+  // int win_width= DefVal::HOST_EVO_X;
+  // int wmin=DefVal::HOST_EVO_W_MIN;
+  // int wmax=DefVal::HOST_EVO_W_MAX;
+  // int hmin=DefVal::HOST_EVO_H_MIN;
+  // int hmax=DefVal::HOST_EVO_H_MAX;
+  // int W= (DefVal::HOST_WIDTH*DefVal::WINDOW_WIDTH)/100;
+  // int H=(DefVal::HOST_HEIGHT*DefVal::WINDOW_HEIGHT)/100;
+  // for (int i=0; i<n_triangles; i++) 
+  // {
+  //   int random_x = rand()%(int)(win_width+1);   // Position of triangle (random in range(0,win_width))
+  //   int random_w = wmin+(rand()%(int)(wmax-wmin+1));         // Random number btw wmin and wmax
+  //   int random_h = hmin+(rand()%(int)(hmax-hmin+1));         // Random number btw hmin and hmax
+  //   if (random_w%2 == 1)
+  //     random_w-=1;
+       
+  //   int r1=rand()%(2);
+  //   if (r1==0) {new_t[i].x = t[i].x+random_x;}
+  //   else {new_t[i].x = t[i].x-random_x;}
+  //   int r2=rand()%(2);
+  //   if (r2==0) {new_t[i].w = t[i].w+random_w;}
+  //   else {new_t[i].w = t[i].w-random_w;}
+  //   int r3=rand()%(2);
+  //   if (r3==0) {new_t[i].h = t[i].h+random_h;}
+  //   else {new_t[i].h = t[i].h-random_h;}
+
+  //   //printf("%d %d %d\n", t[i].x, t[i].w, t[i].h);
+  // }
+  // // Check boundaries
+  // for (int i=0; i<n_triangles; i++)
+  // {
+  //   // Checks if triangle is too much on the left or rigth...
+  //   //if so, keep the old values of t
+  //   if ( (new_t[i].x - int(0.5*new_t[i].w) < 0) || (new_t[i].x+int(0.5*new_t[i].w) > DefVal::PIC_WIDTH) ) 
+  //   {
+  //     new_t[i].x = t[i].x;
+  //     new_t[i].w = t[i].w;
+  //     new_t[i].h= t[i].h;
+  //   }
+  //   // Checks if triangle is too large...
+  //   if (new_t[i].w>W | new_t[i].w<0)
+  //     new_t[i].w = t[i].w; 
+  //   // Checks if triangle is too hight...
+  //   if (new_t[i].h>H | new_t[i].h<0)
+  //     new_t[i].h = t[i].h; 
+  // }
+  // return new_t;
 }

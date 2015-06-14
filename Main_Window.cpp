@@ -195,8 +195,10 @@ void Main_Window::Start_button_clicked(void)
 	printf("Uuuuuuuh: %d generations\n",n);
 	for(int i = 0; i < n; i++)
 	{
-		printf("Cool.\n");
+		env.newGeneration();
 	}
+	
+	//env.saveGraphics();
 }
 
 void Main_Window::host_number_spinbutton_changed(void)

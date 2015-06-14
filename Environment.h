@@ -51,7 +51,7 @@ class Environment
     //                            Accessors: getters
     // =======================================================================
 	
-    int* getFecondity(void) const;
+    double* getFecondity(void) const;
 
 
     // =======================================================================
