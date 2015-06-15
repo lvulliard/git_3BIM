@@ -353,7 +353,7 @@ Triangle* Host::evolutionTriangles(void)
   //   //printf("%d %d %d\n", t[i].x, t[i].w, t[i].h);
   // }
   // // Check boundaries
-  // for (int i=0; i<n_triangles; i++)
+  // for (int i=0; i<n_triangles; i++)N_TRIANGLES_PARASITE
   // {
   //   // Checks if triangle is too much on the left or rigth...
   //   //if so, keep the old values of t
@@ -371,4 +371,44 @@ Triangle* Host::evolutionTriangles(void)
   //     new_t[i].h = t[i].h; 
   // }
   // return new_t;
+}
+
+double* Host::compParaFitness(void)
+{
+  unsigned int** hostProfile = matrixGenerator(host_triangles, DefVal::N_TRIANGLES_HOST);
+  double* res = new double [DefVal::N_TRIANGLES_HOST];
+
+  for(int i = 0; i < DefVal::N_TRIANGLES_PARASITE; i++)
+  {
+    // Number of pixels common to the host and the parasite
+    double count_parahost = 0.0;
+    // Number of pixels only in the parasite
+    double count_paraonly = 0.0;
+
+    unsigned int** onlyOneParaTriangle = matrixGenerator(&paras_triangles[i], 1);
+    for(int x = 0; x < DefVal::PIC_WIDTH; x ++)
+    {
+      for(int y = 1; y < DefVal::PIC_HEIGHT; y++)
+      {
+        if(onlyOneParaTriangle[x][y] == 1)
+        {
+          if (hostProfile[x][y] == 1)
+          {
+            count_parahost++;
+          }
+          else
+          {
+            count_paraonly++;
+          }
+        }
+      }
+    }
+
+    // Condition to avoid NaN
+    if (count_parahost + count_paraonly != 0)
+      res[i] = count_parahost / (count_paraonly + count_parahost);
+    else
+      res[i] = 0;
+  }
+  return res;
 }

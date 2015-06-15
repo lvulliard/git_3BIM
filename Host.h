@@ -80,6 +80,8 @@ class Host
     void format_and_save(unsigned int**, int);
     unsigned int ** pix_to_mat(char * name_pic, int T) const;
     Triangle* evolutionTriangles(void);
+    // Return the percentage of each parasite included in the host profile
+    double* compParaFitness(void);
 
 
 

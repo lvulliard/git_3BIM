@@ -76,6 +76,9 @@ void Environment::newGeneration(void)
     if (p < p_cumul) // If the random value is below the cumulated probabilites
     {
       new_hosts[done] = Host(hosts[count]); // The "count" host reproduces
+
+      // printf("P[0],H[%d],%f %f\n", done, (hosts[done].compParaFitness())[0], (hosts[done].compParaFitness())[1]);
+
       //printf("NH : %d, OH : %d; F : %f\n", done, count, new_hosts[done].getFitness( profileFunction() ) );
       done += 1; // One more host has been generated
       count = -1; // We start again to look from the first host
@@ -145,10 +148,8 @@ double* Environment::getFecondity(void) const
 
   for (int i=0; i<nb_hosts; i++) {
     fecondity[i] = exp(hosts[i].getFitness(profile) * DefVal::FECONDITY_COEFF) / all_F;
-    //printf("OH : %d, F : %f\n", i, fecondity[i]);
     check += fecondity[i];
  }
 
-  //printf("Td:%f, H:%d\n", check, nb_hosts);
   return fecondity;
 }
