@@ -67,12 +67,13 @@ class Environment
     void newGeneration(void);
     void saveGraphics(void);
     void saveLog(void);
+    void saveData(void);
 
 
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
-    
+
 
 
   protected :

@@ -44,7 +44,8 @@ Environment::Environment(void)
   for (int i = 0; i < DefVal::NB_HOSTS ; i++)
   {
     hosts[i] = Host(1);
-  }  
+  }
+  saveData(); // For the statistics !
 }
 
 // ===========================================================================
@@ -151,4 +152,27 @@ double* Environment::getFecondity(void) const
 
   //printf("Td:%f, H:%d\n", check, nb_hosts);
   return fecondity;
+}
+
+// Save hosts data in file for stats
+void Environment::saveData(void)
+{
+  int nb_hosts = DefVal::NB_HOSTS;
+  char file_name[100];
+  char data[100];
+  double* hosts_fecondity = getFecondity();
+  //double* hosts_fitness = getFitness();
+
+  for (int i=0; i<nb_hosts; i++)
+  {
+    printf("hello:\t%d\n",i);
+    sprintf(file_name,"host_%d.data", i);
+    FILE * file = fopen(file_name, "w");
+
+    sprintf(data,"host_%d\t%lf\t", i, hosts_fecondity[i]);
+    const void* output = data;
+
+    fwrite(output, sizeof(char), sizeof(data), file);
+    fclose(file);
+  }
 }

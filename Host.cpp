@@ -214,7 +214,8 @@ unsigned int ** Host::pix_to_mat(char * name_pic, int count) const
       }
       count++;
     }
-  } 
+  }
+  fclose(fi); // MARIANNE!
   delete pix;
   return matH;
 }
@@ -260,6 +261,7 @@ void Host::save_picture(unsigned char* mat_pix, char * picture_name) //pix is an
 	unsigned int W=DefVal::PIC_WIDTH;
 	fprintf(picture, "P6\n %d %d\n %d\n",W,H,DefVal::MAX_VAL_PICTURE);	
 	fwrite(mat_pix,sizeof(unsigned char),3*W*H, picture);
+  fclose(picture); // MARIANNE!
   //delete [] mat_pix;
 }
 
