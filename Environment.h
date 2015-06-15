@@ -67,6 +67,8 @@ class Environment
     void newGeneration(void);
     void saveGraphics(void);
     void saveLog(void);
+    void mutation(void);
+
 
 
     // =======================================================================

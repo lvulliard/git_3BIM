@@ -37,6 +37,12 @@ namespace DefVal {
 	const int PARASITE_HEIGHT = 90; // PERCENTAGE
 	const unsigned int NB_HOSTS = 35;
 	
+	const int HOST_EVO_X = 20;
+	const int HOST_EVO_W_MIN = 10;
+	const int HOST_EVO_W_MAX = 20;
+	const int HOST_EVO_H_MIN = 10;
+	const int HOST_EVO_H_MAX = 20;
+
 	const double FECONDITY_COEFF = 715044.3; 
 	const unsigned int HOST_NUMBER_DEFAULT = 15;
 	const unsigned int PARASITE_NUMBER_DEFAULT = 10;

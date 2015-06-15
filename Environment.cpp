@@ -90,6 +90,15 @@ void Environment::newGeneration(void)
   for(int i = 0; i < DefVal::NB_HOSTS; i++)
   {
     hosts[i] = new_hosts[i];
+    //printf("%lg\n", getFecondity()[0]);
+  }
+}
+
+void Environment::mutation(void)
+{
+  for (int i=0;i<DefVal::NB_HOSTS;i++)
+  {
+    hosts[i].evolutionTriangles();
   }
 }
     

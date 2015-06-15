@@ -193,9 +193,11 @@ void Main_Window::Start_button_clicked(void)
 	int n;
 	n = generation_number_spinbutton.get_value();
 	printf("Uuuuuuuh: %d generations\n",n);
+
 	for(int i = 0; i < n; i++)
 	{
 		env.newGeneration();
+		env.mutation();
 	}
 	
 	env.saveGraphics();
