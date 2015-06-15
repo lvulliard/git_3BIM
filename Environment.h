@@ -88,6 +88,7 @@ class Environment
     // =======================================================================
     unsigned int** profile;
     Host* hosts;
+    int* hosts_parent;
 
 	
 

@@ -186,7 +186,7 @@ void Main_Window::change_central_pic(void)
 	string text2 = host_combobox.get_active_text(); 
 	string f_name = text2 + DefVal::PIC_FORMAT;
 	display_image.set(f_name);
-	int index = text2[6];
+	//int index = text2[6];
 	//printf("Fecondity of host[%d] = %lf\n", index, env.hosts_fecondity[index]);
 
 	//statistics_label.set_label("Statistics of Host :\tFitness:\tFecondity:");

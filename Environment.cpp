@@ -41,10 +41,13 @@ Environment::Environment(void)
 
   // Create a table of NB_HOSTS hosts
   hosts = new Host[DefVal::NB_HOSTS];
+  hosts_parent = new int[DefVal::NB_HOSTS];
   for (int i = 0; i < DefVal::NB_HOSTS ; i++)
   {
     hosts[i] = Host(1);
+    hosts_parent[i] = -1;
   }
+
   saveData(); // For the statistics !
 }
 
@@ -54,6 +57,7 @@ Environment::Environment(void)
 Environment::~Environment(void)
 {
   delete [] hosts;
+  delete [] hosts_parent;
 }
 
 
@@ -79,7 +83,8 @@ void Environment::newGeneration(void)
       new_hosts[done] = Host(hosts[count]); // The "count" host reproduces
 
       // printf("P[0],H[%d],%f %f\n", done, (hosts[done].compParaFitness())[0], (hosts[done].compParaFitness())[1]);
-
+      // For statistics:
+      hosts_parent[done] = count;
       //printf("NH : %d, OH : %d; F : %f\n", done, count, new_hosts[done].getFitness( profileFunction() ) );
       done += 1; // One more host has been generated
       count = -1; // We start again to look from the first host
@@ -95,6 +100,7 @@ void Environment::newGeneration(void)
   {
     hosts[i] = new_hosts[i];
   }
+  saveData(); // For the statistics !
 }
     
 
@@ -162,15 +168,16 @@ void Environment::saveData(void)
   char file_name[100];
   char data[100];
   double* hosts_fecondity = getFecondity();
-  //double* hosts_fitness = getFitness();
+  double hosts_fitness;
 
   for (int i=0; i<nb_hosts; i++)
   {
-    printf("hello:\t%d\n",i);
     sprintf(file_name,"host_%d.data", i);
     FILE * file = fopen(file_name, "w");
 
-    sprintf(data,"host_%d\t%lf\t", i, hosts_fecondity[i]);
+    hosts_fitness = hosts[i].getFitness(profile);
+    sprintf(data,"host_%d\t%d\t%lf\t%lf\n", i, hosts_parent[i], hosts_fitness, hosts_fecondity[i]);
+    printf(data);
     const void* output = data;
 
     fwrite(output, sizeof(char), sizeof(data), file);
