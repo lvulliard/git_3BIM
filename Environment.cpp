@@ -77,7 +77,7 @@ void Environment::newGeneration(void)
     {
       new_hosts[done] = Host(hosts[count]); // The "count" host reproduces
 
-      // printf("P[0],H[%d],%f %f\n", done, (hosts[done].compParaFitness())[0], (hosts[done].compParaFitness())[1]);
+      //printf("P[0],H[%d],%f %f\n", done, (hosts[done].paraReproductionRate())[0], (hosts[done].paraReproductionRate())[1]);
 
       //printf("NH : %d, OH : %d; F : %f\n", done, count, new_hosts[done].getFitness( profileFunction() ) );
       done += 1; // One more host has been generated

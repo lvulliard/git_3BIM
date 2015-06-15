@@ -412,3 +412,21 @@ double* Host::compParaFitness(void)
   }
   return res;
 }
+
+double* Host::paraReproductionRate(void)
+{
+  double* res = new double [DefVal::N_TRIANGLES_HOST];
+  // percentage of parasite in host
+  double* p = compParaFitness();
+
+  for(int i = 0; i < DefVal::N_TRIANGLES_PARASITE; i++)
+  {
+    // Reproduction rate from the area in the host profile
+    double ra = DefVal::PARA_REP_IN*p[i] + (1-p[i])*DefVal::PARA_REP_OUT;
+    // Reproduction rate from the size of the area
+    double rb = sin( 3.141592653589793 * pow((paras_triangles[i].h * paras_triangles[i].w) / double(DefVal::PARASITE_WIDTH * DefVal::PARASITE_HEIGHT * DefVal::PIC_WIDTH * DefVal::PIC_HEIGHT), 3) );
+    res[i] = (ra + rb)/double(2);
+  }  
+
+  return res;
+}
