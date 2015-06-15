@@ -67,12 +67,15 @@ class Environment
     void newGeneration(void);
     void saveGraphics(void);
     void saveLog(void);
+    void mutation(void);
+
+    void saveData(void);
 
 
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
-    
+
 
 
   protected :
@@ -87,6 +90,7 @@ class Environment
     // =======================================================================
     unsigned int** profile;
     Host* hosts;
+    int* hosts_parent;
 
 	
 
