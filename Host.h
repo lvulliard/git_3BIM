@@ -83,7 +83,8 @@ class Host
 
     // Return the percentage of each parasite included in the host profile
     double* compParaFitness(void);
-
+    // Return the chance each parasite has to be transmitted
+    double* paraReproductionRate(void);
 
 
     // =======================================================================

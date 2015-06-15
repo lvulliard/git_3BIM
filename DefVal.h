@@ -29,8 +29,8 @@ namespace DefVal {
 	const unsigned int PIC_WIDTH = 800;
 	const unsigned int PIC_HEIGHT = 500;
 	const unsigned int HOST_COMBOBOX_WRAP_WIDTH = 1;
-	const int N_TRIANGLES_HOST = 15;
-	const int N_TRIANGLES_PARASITE = 5;
+	const int N_TRIANGLES_HOST = 25;
+	const int N_TRIANGLES_PARASITE = 2;
 	const int HOST_WIDTH = 20; // For max width. To be given as a PERCENTAGE of the PIC_WIDTH. Here 10%
 	const int HOST_HEIGHT = 95; // PERCENTAGE of PIC_HEIGHT
 	const int PARASITE_WIDTH = 12; // PERCENTAGE
@@ -44,6 +44,8 @@ namespace DefVal {
 	const int HOST_EVO_H_MAX = 20;
 
 	const double FECONDITY_COEFF = 715044.3; 
+	const double PARA_REP_IN = 0.95;
+	const double PARA_REP_OUT = 0.15;  
 	const unsigned int HOST_NUMBER_DEFAULT = 15;
 	const unsigned int PARASITE_NUMBER_DEFAULT = 10;
 
