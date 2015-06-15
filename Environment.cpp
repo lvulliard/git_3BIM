@@ -185,8 +185,8 @@ void Environment::saveData(void)
     FILE * file = fopen(file_name, "w");
 
     hosts_fitness = hosts[i].getFitness(profile);
-    sprintf(data,"host_%d\t%d\t%lf\t%lf\n", i, hosts_parent[i], hosts_fitness, hosts_fecondity[i]);
-    printf(data);
+    sprintf(data,"Host %d\t:\tParent: %d\tFitness: %lf\tFecondity: %lf", i, hosts_parent[i], hosts_fitness, hosts_fecondity[i]);
+    //printf(data);
     const void* output = data;
 
     fwrite(output, sizeof(char), sizeof(data), file);

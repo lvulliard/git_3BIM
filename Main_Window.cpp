@@ -113,6 +113,7 @@ Main_Window::Main_Window(void) {
 	// Attach statistics_label
 	Main_table.attach(statistics_label,0,5,4,5, Gtk::FILL, Gtk::FILL,DefVal::WIDGETS_MARGIN_SIZE,DefVal::WIDGETS_MARGIN_SIZE);
 	statistics_label.set_label(DefVal::STATISTICS_LABEL_TEXT);
+	display_stats_on_label();
 
 	// Attach legend_table
 	Main_table.attach(legend_table,0,5,3,4, Gtk::FILL, Gtk::FILL,DefVal::LEGEND_WIDGETS_MARGIN_SIZE,DefVal::LEGEND_WIDGETS_MARGIN_SIZE);
@@ -186,10 +187,7 @@ void Main_Window::change_central_pic(void)
 	string text2 = host_combobox.get_active_text(); 
 	string f_name = text2 + DefVal::PIC_FORMAT;
 	display_image.set(f_name);
-	//int index = text2[6];
-	//printf("Fecondity of host[%d] = %lf\n", index, env.hosts_fecondity[index]);
-
-	//statistics_label.set_label("Statistics of Host :\tFitness:\tFecondity:");
+	display_stats_on_label();
 }
 
 void Main_Window::Start_button_clicked(void)
@@ -228,3 +226,15 @@ void Main_Window::Start_button_clicked(void)
 // }
 
 
+void Main_Window::display_stats_on_label()
+{
+  string host_name = host_combobox.get_active_text();
+  char host_file [100];
+  sprintf(host_file, "%s.data", host_name.c_str());
+  FILE * file = fopen(host_file, "r");
+  char stats [100];
+  fread(stats,sizeof(char),100,file);//size_t fread ( void * ptr, size_t size, size_t count, FILE * stream );
+  //printf("%s\n",stats );
+  statistics_label.set_label(stats);
+  fclose(file);
+}
