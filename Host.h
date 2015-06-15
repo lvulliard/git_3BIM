@@ -79,7 +79,13 @@ class Host
     // Compute the matrix of the 3 profiles and print it
     void format_and_save(unsigned int**, int);
     unsigned int ** pix_to_mat(char * name_pic, int T) const;
+<<<<<<< HEAD
     void evolutionTriangles(void);
+=======
+    Triangle* evolutionTriangles(void);
+    // Return the percentage of each parasite included in the host profile
+    double* compParaFitness(void);
+>>>>>>> 462d611698cf1d51deded2e19c0787828d1a9f03
 
 
 

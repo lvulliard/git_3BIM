@@ -178,7 +178,7 @@ void Main_Window::Fill_host_combobox(void){
     	sprintf(name,"host_%d", i);
     	host_combobox.append(name);
  	}	
-	host_combobox.set_active_text("host_2");
+	host_combobox.set_active_text("host_0");
 }
 
 void Main_Window::change_central_pic(void)
@@ -186,6 +186,10 @@ void Main_Window::change_central_pic(void)
 	string text2 = host_combobox.get_active_text(); 
 	string f_name = text2 + DefVal::PIC_FORMAT;
 	display_image.set(f_name);
+	int index = text2[6];
+	//printf("Fecondity of host[%d] = %lf\n", index, env.hosts_fecondity[index]);
+
+	//statistics_label.set_label("Statistics of Host :\tFitness:\tFecondity:");
 }
 
 void Main_Window::Start_button_clicked(void)
@@ -205,6 +209,7 @@ void Main_Window::Start_button_clicked(void)
 	string text2 = host_combobox.get_active_text(); 
 	string f_name = text2 + DefVal::PIC_FORMAT;
 	display_image.set(f_name);
+
 
 }
 

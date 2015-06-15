@@ -44,7 +44,8 @@ Environment::Environment(void)
   for (int i = 0; i < DefVal::NB_HOSTS ; i++)
   {
     hosts[i] = Host(1);
-  }  
+  }
+  saveData(); // For the statistics !
 }
 
 // ===========================================================================
@@ -76,6 +77,9 @@ void Environment::newGeneration(void)
     if (p < p_cumul) // If the random value is below the cumulated probabilites
     {
       new_hosts[done] = Host(hosts[count]); // The "count" host reproduces
+
+      // printf("P[0],H[%d],%f %f\n", done, (hosts[done].compParaFitness())[0], (hosts[done].compParaFitness())[1]);
+
       //printf("NH : %d, OH : %d; F : %f\n", done, count, new_hosts[done].getFitness( profileFunction() ) );
       done += 1; // One more host has been generated
       count = -1; // We start again to look from the first host
@@ -154,10 +158,31 @@ double* Environment::getFecondity(void) const
 
   for (int i=0; i<nb_hosts; i++) {
     fecondity[i] = exp(hosts[i].getFitness(profile) * DefVal::FECONDITY_COEFF) / all_F;
-    //printf("OH : %d, F : %f\n", i, fecondity[i]);
     check += fecondity[i];
  }
 
-  //printf("Td:%f, H:%d\n", check, nb_hosts);
   return fecondity;
+}
+
+// Save hosts data in file for stats
+void Environment::saveData(void)
+{
+  int nb_hosts = DefVal::NB_HOSTS;
+  char file_name[100];
+  char data[100];
+  double* hosts_fecondity = getFecondity();
+  //double* hosts_fitness = getFitness();
+
+  for (int i=0; i<nb_hosts; i++)
+  {
+    printf("hello:\t%d\n",i);
+    sprintf(file_name,"host_%d.data", i);
+    FILE * file = fopen(file_name, "w");
+
+    sprintf(data,"host_%d\t%lf\t", i, hosts_fecondity[i]);
+    const void* output = data;
+
+    fwrite(output, sizeof(char), sizeof(data), file);
+    fclose(file);
+  }
 }

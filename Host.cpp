@@ -215,7 +215,8 @@ unsigned int ** Host::pix_to_mat(char * name_pic, int count) const
       }
       count++;
     }
-  } 
+  }
+  fclose(fi); // MARIANNE!
   delete pix;
   return matH;
 }
@@ -261,6 +262,7 @@ void Host::save_picture(unsigned char* mat_pix, char * picture_name) //pix is an
 	unsigned int W=DefVal::PIC_WIDTH;
 	fprintf(picture, "P6\n %d %d\n %d\n",W,H,DefVal::MAX_VAL_PICTURE);	
 	fwrite(mat_pix,sizeof(unsigned char),3*W*H, picture);
+  fclose(picture); // MARIANNE!
   //delete [] mat_pix;
 }
 
@@ -340,7 +342,7 @@ void Host::evolutionTriangles(void)
     int random_h = hmin+(rand()%(int)(hmax-hmin+1));         // Random number btw hmin and hmax
     if (random_w%2 == 1)
       random_w-=1;
-       
+
     int r1=rand()%(2);
     if (r1==0) {new_t[i].x = t[i].x+random_x;}
     else {new_t[i].x = t[i].x-random_x;}
@@ -373,4 +375,44 @@ void Host::evolutionTriangles(void)
   }
   Triangle tri;
   memcpy(host_triangles,new_t,n_triangles*(sizeof tri));
+}
+
+double* Host::compParaFitness(void)
+{
+  unsigned int** hostProfile = matrixGenerator(host_triangles, DefVal::N_TRIANGLES_HOST);
+  double* res = new double [DefVal::N_TRIANGLES_HOST];
+
+  for(int i = 0; i < DefVal::N_TRIANGLES_PARASITE; i++)
+  {
+    // Number of pixels common to the host and the parasite
+    double count_parahost = 0.0;
+    // Number of pixels only in the parasite
+    double count_paraonly = 0.0;
+
+    unsigned int** onlyOneParaTriangle = matrixGenerator(&paras_triangles[i], 1);
+    for(int x = 0; x < DefVal::PIC_WIDTH; x ++)
+    {
+      for(int y = 1; y < DefVal::PIC_HEIGHT; y++)
+      {
+        if(onlyOneParaTriangle[x][y] == 1)
+        {
+          if (hostProfile[x][y] == 1)
+          {
+            count_parahost++;
+          }
+          else
+          {
+            count_paraonly++;
+          }
+        }
+      }
+    }
+
+    // Condition to avoid NaN
+    if (count_parahost + count_paraonly != 0)
+      res[i] = count_parahost / (count_paraonly + count_parahost);
+    else
+      res[i] = 0;
+  }
+  return res;
 }

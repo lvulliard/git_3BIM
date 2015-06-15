@@ -69,12 +69,13 @@ class Environment
     void saveLog(void);
     void mutation(void);
 
+    void saveData(void);
 
 
     // =======================================================================
     //                             Public Attributes
     // =======================================================================
-    
+
 
 
   protected :
