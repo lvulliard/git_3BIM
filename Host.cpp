@@ -65,7 +65,7 @@ Host::Host(const Host &h2)
     paras_triangles[i].w = h2.paras_triangles[i].w;
     paras_triangles[i].h = h2.paras_triangles[i].h;
   } 
- }
+}
 
 
 // ===========================================================================
@@ -247,6 +247,10 @@ double Host::getFitness(unsigned int** proE)
 			}
 		}	
 	}
+
+  delete [] proH;
+  delete [] proP;
+  
 	return 1/fitness; // Inverse of what is not good
 }
 
@@ -323,6 +327,9 @@ void Host::format_and_save(unsigned int** mat_envt, int id)
     char name[100];
     sprintf(name,"host_%d%s", id, DefVal::PIC_FORMAT.c_str());
     save_picture(pix, name);
+
+    delete [] mat_host;
+    delete [] mat_par;
 }
 
 void Host::evolutionTriangles(void)
@@ -411,12 +418,16 @@ double* Host::compParaFitness(void)
       }
     }
 
+    delete [] onlyOneParaTriangle;
+
     // Condition to avoid NaN
     if (count_parahost + count_paraonly != 0)
       res[i] = count_parahost / (count_paraonly + count_parahost);
     else
       res[i] = 0;
   }
+
+  delete [] hostProfile;
   return res;
 }
 

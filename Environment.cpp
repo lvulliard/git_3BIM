@@ -192,4 +192,5 @@ void Environment::saveData(void)
     fwrite(output, sizeof(char), sizeof(data), file);
     fclose(file);
   }
+  delete [] hosts_fecondity;
 }
