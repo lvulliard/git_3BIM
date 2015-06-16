@@ -196,18 +196,20 @@ void Main_Window::Start_button_clicked(void)
 	n = generation_number_spinbutton.get_value();
 	printf("Uuuuuuuh: %d generations\n",n);
 
-	for(int i = 0; i < n; i++)
+	if(n > 0)
 	{
-		env.newGeneration();
-		env.mutation();
+		for(int i = 0; i < n; i++)
+		{
+			env.newGeneration();
+			env.mutation();
+		}
+		
+		env.saveGraphics();
+
+		string text2 = host_combobox.get_active_text(); 
+		string f_name = text2 + DefVal::PIC_FORMAT;
+		display_image.set(f_name);
 	}
-	
-	env.saveGraphics();
-
-	string text2 = host_combobox.get_active_text(); 
-	string f_name = text2 + DefVal::PIC_FORMAT;
-	display_image.set(f_name);
-
 
 }
 
