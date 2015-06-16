@@ -206,9 +206,7 @@ void Main_Window::Start_button_clicked(void)
 		
 		env.saveGraphics();
 
-		string text2 = host_combobox.get_active_text(); 
-		string f_name = text2 + DefVal::PIC_FORMAT;
-		display_image.set(f_name);
+		change_central_pic();
 	}
 
 }
