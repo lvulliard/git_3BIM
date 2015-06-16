@@ -448,8 +448,22 @@ void Host::evolutionPara(void)
   int hmax=DefVal::PARA_EVO_H_MAX;
   int W= (DefVal::PARASITE_WIDTH*DefVal::WINDOW_WIDTH)/100;
   int H=(DefVal::PARASITE_HEIGHT*DefVal::WINDOW_HEIGHT)/100;
+
+  double p;
+  double* fecondity = paraReproductionRate();
+
   for (int i=0; i<n_triangles; i++) 
   {
+    p = (double) rand()/RAND_MAX;
+    // Is the parasite transmitted ?
+    if(p > fecondity[i])
+    {
+      // If not, we "remove" it
+      t[i].x = DefVal::WINDOW_WIDTH * ((double) rand()/RAND_MAX);
+      t[i].h = 0.0;
+      t[i].w = 0.0;
+    }
+
     int random_x = rand()%(int)(win_width+1);   // Position of triangle (random in range(0,win_width))
     int random_w = wmin+(rand()%(int)(wmax-wmin+1));         // Random number btw wmin and wmax
     int random_h = hmin+(rand()%(int)(hmax-hmin+1));         // Random number btw hmin and hmax
