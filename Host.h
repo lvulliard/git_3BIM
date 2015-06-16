@@ -85,7 +85,7 @@ class Host
     double* compParaFitness(void);
     // Return the chance each parasite has to be transmitted
     double* paraReproductionRate(void);
-
+    void evolutionPara(void);
 
     // =======================================================================
     //                             Public Attributes

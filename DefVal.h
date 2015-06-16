@@ -43,6 +43,12 @@ namespace DefVal {
 	const int HOST_EVO_H_MIN = 10;
 	const int HOST_EVO_H_MAX = 20;
 
+	const int PARA_EVO_X = 15;
+	const int PARA_EVO_W_MIN = 5;
+	const int PARA_EVO_W_MAX = 30;
+	const int PARA_EVO_H_MIN = 50;
+	const int PARA_EVO_H_MAX = 30;
+
 	const double FECONDITY_COEFF = 715044.3; 
 	const double PARA_REP_IN = 0.95;
 	const double PARA_REP_OUT = 0.15;  
