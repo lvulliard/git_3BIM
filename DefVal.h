@@ -50,7 +50,7 @@ namespace DefVal {
 	const unsigned int PARASITE_NUMBER_DEFAULT = 10;
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";
-	const string APP_NAME = "Coevolution Model";
+	const string APP_NAME = "Host-parasite Evolution with red queen Dynamics In silico";
 	const string ICON = "icon.png";
 	
 	const string START_BUTTON_LABEL = "Start";
