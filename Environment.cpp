@@ -119,7 +119,7 @@ void Environment::saveGraphics(void)
   for (int i = 0; i < DefVal::NB_HOSTS; ++i)
   {
     //printf("Okay until %d\n", i);
-    hosts[i].format_and_save(profileFunction(),i);
+    hosts[i].format_and_save(profile,i);
   }
 }
     

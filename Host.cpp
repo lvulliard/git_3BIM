@@ -155,8 +155,11 @@ unsigned int* Host::triangleProfile(Triangle* triangles, int size_triangles)
       for (int x2=x+1; x2<=x+w/2; x2++)
       {
         y = int(-2*(h/w)*(x2-x-w/2));
-        if (y > profile[x2])
-          profile[x2] = y;
+        if(x2 < DefVal::PIC_WIDTH)
+        {
+          if (y > profile[x2])
+            profile[x2] = y;
+        }
       }
     }
   }
@@ -232,7 +235,7 @@ double Host::getFitness(unsigned int** proE)
 	
   for (int x = 0; x < DefVal::PIC_WIDTH; ++x) // parse on x
 	{
-		for (int y = 0; y < DefVal::PIC_HEIGHT; ++y) // parse on y
+		for (int y = 1; y < DefVal::PIC_HEIGHT; ++y) // parse on y
 		{
 			if ( ((proH[x][y] == 1) && (proE[x][y] == 0)) || ((proH[x][y] == 0) && (proE[x][y] == 1))  )	// If a point of the profile is not in the enveloppe, or other way around 
 			{

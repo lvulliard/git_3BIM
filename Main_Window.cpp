@@ -174,9 +174,9 @@ Main_Window::Main_Window(void) {
 
 void Main_Window::Fill_host_combobox(void){
 	// Add entries to the combobox
+	char name[100];
   	for (int i = 0; i < DefVal::NB_HOSTS; ++i)
   	{
-  		char name[100];
     	sprintf(name,"host_%d", i);
     	host_combobox.append(name);
  	}	
