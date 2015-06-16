@@ -48,6 +48,7 @@ namespace DefVal {
 	const double PARA_REP_OUT = 0.15;  
 	const unsigned int HOST_NUMBER_DEFAULT = 15;
 	const unsigned int PARASITE_NUMBER_DEFAULT = 10;
+	const unsigned int GENERATION_NUMBER_DEFAULT = 1;
 
 	const string BUTTON1_LABEL = "Hummm, I like it when you click me!";
 	const string APP_NAME = "Host-parasite Evolution with red queen Dynamics In silico";
